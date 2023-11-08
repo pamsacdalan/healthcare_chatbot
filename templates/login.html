@@ -40,7 +40,9 @@
 
                     <form method = "POST">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        {% comment %} {{ form.as_p }} {% endcomment %}
+                        {{ form.username }}
+                        {{ form.password }}
                         <br>
                         <!-- Login button -->
                         <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
