@@ -120,13 +120,14 @@ def str_to_tokens(sentence:str):
 
 enc_model , dec_model = make_inference_models()
 
+#Current Error: Model keeps retraining when using chatting function
 def chatting(sentence:str):
     states_values = enc_model.predict(str_to_tokens(sentence))
-    empty_target_seq = np.zeros((1, 1 ))
+    empty_target_seq = np.zeros((1, 1))
     empty_target_seq[0, 0] = output_word_dict['start']
     decoded_translation = ''
-    dec_outputs , h , c = dec_model.predict([empty_target_seq] + states_values)
-    sampled_word_index = np.argmax( dec_outputs[0, -1, :] )
+    dec_outputs, h, c = dec_model.predict([empty_target_seq] + states_values)
+    sampled_word_index = np.argmax(dec_outputs[0, -1, :])
     sampled_word = None
     for word, index in output_word_dict.items():
         if sampled_word_index == index :
