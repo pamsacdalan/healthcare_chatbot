@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from tensorflow.keras import layers , activations , models , preprocessing , utils
+from tensorflow.keras import layers, activations, models, preprocessing, utils
 
 with open('./dataset/narrativeqa dataset - cleaned.csv', 'r', encoding='utf-8') as file:
     lines = file.readlines()
@@ -85,6 +85,52 @@ model = tf.keras.models.Model([encoder_inputs, decoder_inputs], output)
 model.compile(optimizer=tf.keras.optimizers.Adam(), loss='categorical_crossentropy')
 
 # MODEL SAVING
-#Hi! Kung malakas po ang machine/laptop/desktop niyo, taasan niyo po ang number of epochs
+#Hi! Kung malakas po ang machine/laptop/desktop niyo, taasan niyo po ang number of epochs at alisin ang hash
 model.fit([encoder_input_data , decoder_input_data], decoder_target_data, batch_size=124, epochs=500)
-model.save('./model/chatbot_model.h5')
+model.save('./chatbot/model/chatbot_model.h5')
+
+#model = tf.keras.models.load_model('./chatbot/model/chatbot_model.h5')
+
+# INPUT FORMATTING
+def make_inference_models():
+    encoder_model = tf.keras.models.Model(encoder_inputs, encoder_states)
+
+    decoder_state_input_h = tf.keras.layers.Input(shape=(256,))
+    decoder_state_input_c = tf.keras.layers.Input(shape=(256,))
+
+    decoder_states_inputs = [decoder_state_input_h, decoder_state_input_c]
+
+    decoder_outputs, state_h, state_c = decoder_lstm(
+        decoder_embedding , initial_state=decoder_states_inputs)
+    decoder_states = [state_h, state_c]
+    decoder_outputs = decoder_dense(decoder_outputs)
+    decoder_model = tf.keras.models.Model(
+        [decoder_inputs] + decoder_states_inputs,
+        [decoder_outputs] + decoder_states)
+
+    return encoder_model , decoder_model
+
+# NEED TO EDIT: ASCII CHARACTERS WILL PRODUCE AN ERROR
+def str_to_tokens(sentence:str):
+    words = sentence.lower().split()
+    tokens_list = list()
+    for word in words:
+        tokens_list.append(input_word_dict[word])
+    return preprocessing.sequence.pad_sequences([tokens_list], maxlen=max_input_length, padding='post')
+
+enc_model , dec_model = make_inference_models()
+
+def chatting(sentence:str):
+    states_values = enc_model.predict(str_to_tokens(sentence))
+    empty_target_seq = np.zeros((1, 1 ))
+    empty_target_seq[0, 0] = output_word_dict['start']
+    decoded_translation = ''
+    dec_outputs , h , c = dec_model.predict([empty_target_seq] + states_values)
+    sampled_word_index = np.argmax( dec_outputs[0, -1, :] )
+    sampled_word = None
+    for word, index in output_word_dict.items():
+        if sampled_word_index == index :
+            decoded_translation += '{}'.format(word)
+            sampled_word = word
+
+    return(decoded_translation)
