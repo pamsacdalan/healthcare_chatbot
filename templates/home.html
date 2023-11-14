@@ -9,79 +9,63 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
 
 </head>
-<body>
-    <div class="hero">
-        <div class="container">
-              <nav role="navigation">
-                  <div class="py-3 text-center border-bottom">
-                      <img src="https://www.pngkey.com/png/full/986-9860488_631-x-531-26-0-1-dental-clinic.png" class="invert" height="100">
-                  </div>
-              </nav>
-              <br>
-              <div class="navbar-expand-md">
-                  <div class="mt-6">
-                    <ul class="navbar-nav mx-auto">
-                        {% if request.user.is_authenticated %}
-                      <li class="nav-item">
-                        <p>{{ request.user.username }}</p>
-                      </li>
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                        {% else %}
-                        <a href="{% url 'login' %}">Login</a>
-                        <a href="{% url 'signup' %}">Signup</a>
-                        {% endif %}
-                      
-                    </ul>
-                  </div>
-              </div>
-        </div>
+<body class="background-radial-gradient">
+    <div class="background-radial-gradient">
+        <nav class="navbar bg-custom">
+            <i class="navbar-brand" href="#">
+              <img src="https://www.pngkey.com/png/full/986-9860488_631-x-531-26-0-1-dental-clinic.png" width="30" height="30" class="d-inline-block align-top" alt="">
+              Dental Care
+            </i>
+            <div class="form-inline">
+                {% if request.user.is_authenticated %}
+                    <p>{{ request.user.username }}</p>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'signup' %}">Signup</a>
+                {% endif %}
+            </ul>
+            </div>
+        </nav>
+        <br>
+        <div class="background-radial-gradient">
+            <input type="checkbox" id="check"> 
+            <label class="chat-btn" for="check"> 
+                <i class="fas fa-comments"></i>
+                <i class="fas fa-close"></i> 
+            </label> 
+            <div class="wrapper"> 
+                <div class="header"> 
+                    <h6>Quicare</h6> 
+                </div> 
 
-        <div class="container">
-            <div class="row d-flex justify-content-end ">
-                <div class="col-md-8 col-lg-6 col-xl-4">
-                    <!-- Buttons trigger collapse -->
-                    <a class="btn btn-info btn-block" data-toggle="collapse" href="#collapseChat"
-                        role="button" aria-expanded="false" aria-controls="collapseChat">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span>Quicare chat</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </a>
-    
-                    <!-- Collapsed content -->
-                    <div class="collapse-content collapse" id="collapseChat">
-                        <div class="card" id="chat">
-                            <div class="card-body" data-perfect-scrollbar="true"
-                                style="position: relative; height: 400px">
-    
-                                <div class="d-flex flex-row justify-content-start">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                                        alt="avatar 1" style="width: 30px; height: 100%;">
-                                    <div>
-                                        <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Hi</p>
-                                        <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">How are you???</p>
-                                        <p class="small ms-3 mb-3 rounded-3 text-muted">23:58</p>
-                                    </div>
-                                </div>
-    
-                            </div>
-                            <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                                    alt="avatar 3" style="width: 30px; height: 80%;">
-                                <input type="text" class="form-control form-control-sm"
-                                    placeholder="Type message">
-                                <a class="ms-3 link-info" href="#!"><i class="fas fa-paper-plane"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-body" data-perfect-scrollbar="true" style="position: relative; height: 400px">
+                    <div class="d-flex flex-row justify-content-start"> 
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                            alt="avatar 3" style="width: 30px; height: 80%;">
+                        <span>How may I help you today?</span> 
+                    </div> 
                 </div>
+
+                <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3"> 
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                        alt="avatar 3" style="width: 30px; height: 80%;">
+                    <input type="text" class="form-control form-control-sm" placeholder="Type message">
+                    <a class="ms-3 link-info" href="#!"><i class="fas fa-paper-plane"></i></a>
+                </div> 
             </div>
         </div>
+
+        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+            <div id="radius-shape-1" class="position-absolute rounded-circle"></div>
+            {% comment %} <div id="radius-shape-2" class="position-absolute rounded-circle"></div> {% endcomment %}
+        </div>
+                
+    </div>
         <!-- Bootstrap and Font Awesome CDNs -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    </div>
 </body>
 </html>
