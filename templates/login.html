@@ -40,7 +40,7 @@
 
                     <form method = "POST">
                         {% csrf_token %}
-                        {% comment %} {{ form.as_p }} {% endcomment %}
+                        
                         {{ form.username }}
                         <br>
                         {{ form.password }}
@@ -58,6 +58,6 @@
             </div>
             </div>
         </section>
-  <!-- Section: Design Block -->
+        <!-- Section: Design Block -->
 </body>
 </html>
