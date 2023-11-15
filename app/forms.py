@@ -1,37 +1,39 @@
-from django import forms 
+from django import forms
+from django.forms import Form, EmailField, CharField
+from django.forms.widgets import PasswordInput, TextInput, EmailInput 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class SignupForm(UserCreationForm):
-    first_name = forms.CharField(max_length=100,
+    first_name = CharField(max_length=100,
                                  required=True,
-                                 widget=forms.TextInput(attrs={'placeholder': 'First Name',
+                                 widget=TextInput(attrs={'placeholder': 'First Name',
                                                                'class': 'form-control',
                                                                }))
-    last_name = forms.CharField(max_length=100,
+    last_name = CharField(max_length=100,
                                 required=True,
-                                widget=forms.TextInput(attrs={'placeholder': 'Last Name',
+                                widget=TextInput(attrs={'placeholder': 'Last Name',
                                                               'class': 'form-control',
                                                               }))
-    username = forms.CharField(max_length=100,
+    username = CharField(max_length=100,
                                required=True,
-                               widget=forms.TextInput(attrs={'placeholder': 'Username',
+                               widget=TextInput(attrs={'placeholder': 'Username',
                                                              'class': 'form-control',
                                                              }))
-    email = forms.EmailField(required=True,
-                             widget=forms.TextInput(attrs={'placeholder': 'Email',
+    email = EmailField(required=True,
+                             widget=EmailInput(attrs={'placeholder': 'Email',
                                                            'class': 'form-control',
                                                            }))
-    password1 = forms.CharField(max_length=50,
+    password1 = CharField(max_length=50,
                                 required=True,
-                                widget=forms.PasswordInput(attrs={'placeholder': 'Password',
+                                widget=PasswordInput(attrs={'placeholder': 'Password',
                                                                   'class': 'form-control',
                                                                   'data-toggle': 'password',
                                                                   'id': 'password',
                                                                   }))
-    password2 = forms.CharField(max_length=50,
+    password2 = CharField(max_length=50,
                                 required=True,
-                                widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password',
+                                widget=PasswordInput(attrs={'placeholder': 'Confirm Password',
                                                                   'class': 'form-control',
                                                                   'data-toggle': 'password',
                                                                   'id': 'password',
@@ -43,7 +45,7 @@ class SignupForm(UserCreationForm):
         
     
 
-class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': 'Password'}))
+class LoginForm(Form):
+    username = CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Username'}))
+    password = CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': 'Password'}))
     

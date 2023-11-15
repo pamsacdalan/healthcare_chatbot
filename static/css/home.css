@@ -1,152 +1,127 @@
-/* for homepage  */
-.background-radial-gradient {
-    background-color: white;
-    background-image: radial-gradient(650px circle at 0% 0%,
-    #b7bdc9(218, 41%, 35%) 15%,
-    #b7bdc9(218, 41%, 30%) 35%,
-    #b7bdc9(218, 41%, 20%) 75%,
-    #b7bdc9(218, 41%, 19%) 80%,
-        transparent 50%),
-    radial-gradient(1250px circle at 100% 100%,
-    #af9cb1(218, 41%, 45%) 15%,
-    #af9cb1(218, 41%, 30%) 35%,
-    #af9cb1(218, 41%, 20%) 75%,
-    #af9cb1(218, 41%, 19%) 80%,
-        transparent 100%);
-}
-
-.bg-custom {
-    background-color: #b7bdc9
-}
-
+/* for homepage */
 #radius-shape-1 {
-    height: 220px;
+    height: 200px;
     width: 220px;
-    top: 300px;
-    left: -80px;
+    top: -60px;
+    left: -130px;
     background: radial-gradient(#866475, #ead5c6);
     overflow: hidden;
 }
 
-#radius-shape-2 {
-    border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
-    bottom: -300px;
-    right: -800px;
-    width: 220px;
-    height: 220px;
-    background: radial-gradient(#866475, #ead5c6);
-    overflow: hidden;
+.bg-glass {
+    background-color: hsla(0, 0%, 100%, 0.9) !important;
+    backdrop-filter: saturate(200%) blur(25px);
 }
+
+
 /* for chat window  */
-    body {
-        background-color: #eee
-    }
     
-    .chat-btn {
-        position: absolute;
-        right: 14px;
-        bottom: 30px;
-        cursor: pointer
-    }
-    
-    .chat-btn .close {
-        display: none
-    }
-    
-    .chat-btn i {
-        transition: all 0.9s ease
-    }
-    
-    #check:checked~.chat-btn i {
-        display: block;
-        pointer-events: auto;
-        transform: rotate(180deg)
-    }
-    
-    #check:checked~.chat-btn .comment {
-        display: none
-    }
-    
-    .chat-btn i {
-        font-size: 22px;
-        color: #fff !important
-    }
-    
-    .chat-btn {
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50px;
-        background-color: #866475;
-        color: #fff;
-        font-size: 22px;
-        border: none
-    }
-    
-    .wrapper {
-        position: absolute;
-        right: 30px;
-        bottom: 100px;
-        width: 350px;
-        background-color: #ead5c6;
-        border-radius: 5px;
-        opacity: 0;
-        transition: all 0.4s
-    }
+.chat-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 30px;
+    cursor: pointer;
+}
 
-    .wrapper2 {
-        position: absolute;
-        right: 30px;
-        bottom: 100px;
-        width: 350px;
-        background-color: #b7bdc9;
-        border-radius: 5px;
-        opacity: 0;
-        transition: all 0.4s
-    }
+.chat-btn .close {
+    display: none
+}
+
+.chat-btn i {
+    transition: all 0.9s ease
+}
+
+#check:checked~.chat-btn i {
+    display: block;
+    pointer-events: auto;
+    transform: rotate(180deg)
+}
+
+#check:checked~.chat-btn .comment {
+    display: none
+}
+
+.chat-btn i {
+    font-size: 22px;
+    color: #fff !important
+}
+
+.chat-btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color: #866475;
+    color: #fff;
+    font-size: 22px;
+    border: none
+}
+
+.wrapper {
+    position: absolute;
+    right: 30px;
+    bottom: 100px;
+    width: 350px;
+    background-color: #ead5c6;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all 0.4s
+}
+
+.wrapper2 {
+    position: absolute;
+    right: 30px;
+    bottom: 100px;
+    width: 350px;
+    background-color: #b7bdc9;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all 0.4s
+}
 
 
-    
-    #check:checked~.wrapper {
-        opacity: 1
-    }
-    
-    .header {
-        padding: 13px;
-        background-color: #866475;
-        border-radius: 5px 5px 0px 0px;
-        margin-bottom: 10px;
-        color: #fff
-    }
-    
-    .chat-form {
-        padding: 15px
-    }
-    
-    .chat-form input,
-    textarea,
-    button {
-        margin-bottom: 10px
-    }
-    
-    .chat-form textarea {
-        resize: none
-    }
-    
-    .form-control:focus,
-    .btn:focus {
-        box-shadow: none
-    }
-    
-    .btn,
-    .btn:focus,
-    .btn:hover {
-        background-color: blue;
-        border: blue
-    }
-    
-    #check {
-        display: none !important
-    }
+
+#check:checked~.wrapper {
+    opacity: 1
+}
+
+.header {
+    padding: 13px;
+    background-color: #866475;
+    border-radius: 5px 5px 0px 0px;
+    margin-bottom: 10px;
+    color: #fff
+}
+
+
+.chat-form {
+    padding: 15px
+}
+
+.chat-form input,
+textarea,
+button {
+    margin-bottom: 10px
+}
+
+.chat-form textarea {
+    resize: none
+}
+
+.form-control:focus,
+.btn:focus {
+    box-shadow: none
+}
+
+.btn,
+.btn:focus,
+.btn:hover {
+    background-color: blue;
+    border: blue
+}
+
+#check {
+    display: none !important
+}

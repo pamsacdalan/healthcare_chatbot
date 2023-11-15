@@ -1,38 +1,55 @@
 {% load static %}
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quicare</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SYopr4UpCvGq2RnE=" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
 
+
 </head>
-<body class="background-radial-gradient">
-    <div class="background-radial-gradient">
-        <nav class="navbar bg-custom">
-            <i class="navbar-brand" href="#">
-              <img src="https://www.pngkey.com/png/full/986-9860488_631-x-531-26-0-1-dental-clinic.png" width="30" height="30" class="d-inline-block align-top" alt="">
-              Dental Care
-            </i>
-            <div class="form-inline">
+<body style="background-color: #b7bdc9">
+    <nav class="navbar text-white" style="background-color: #789ac0">
+        <i class="navbar-brand" href="#">
+        <img src="https://www.pngkey.com/png/full/986-9860488_631-x-531-26-0-1-dental-clinic.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Dental Care
+        </i>
+        <div class="form-inline">
+            <div class="d-flex align-items-center">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                     alt="avatar 3" style="width: 20px; height: 70%; margin-right: 10px;">
+                <a class="text-white" href="#" style="margin-right: 10px;" aria-expanded="false">
+                   {{request.user.username}}
+                </a>
+                |
                 {% if request.user.is_authenticated %}
-                    <p>{{ request.user.username }}</p>
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="text-white" style="margin-left: 10px;" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                     <a href="{% url 'login' %}">Login</a>
                     <a href="{% url 'signup' %}">Signup</a>
                 {% endif %}
-            </ul>
             </div>
-        </nav>
-        <br>
-        <div class="background-radial-gradient">
+        </div>
+    </nav>
+
+    <div>
+        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+            <div class="row gx-lg-5 align-items-center mb-5">
+                <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                    {% comment %} <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+
+        <div> <!-- for chatbot -->
             <input type="checkbox" id="check"> 
             <label class="chat-btn" for="check"> 
                 <i class="fas fa-comments"></i>
-                <i class="fas fa-close"></i> 
             </label> 
             <div class="wrapper"> 
                 <div class="header"> 
@@ -42,30 +59,29 @@
                 <div class="card-body" data-perfect-scrollbar="true" style="position: relative; height: 400px">
                     <div class="d-flex flex-row justify-content-start"> 
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                            alt="avatar 3" style="width: 30px; height: 80%;">
-                        <span>How may I help you today?</span> 
+                            alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
+                        <div class="header" style="padding: 5px; font-size: 13px"> 
+                            <span>How may I help you today?</span>
+                        </div>
                     </div> 
                 </div>
 
                 <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3"> 
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                        alt="avatar 3" style="width: 30px; height: 80%;">
-                    <input type="text" class="form-control form-control-sm" placeholder="Type message">
+                        alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
+                    <input type="text" class="form-control form-control-sm" placeholder="Type your message" style="margin-right: 5px;">
                     <a class="ms-3 link-info" href="#!"><i class="fas fa-paper-plane"></i></a>
                 </div> 
             </div>
-        </div>
+        </div> <!-- for chatbot END -->
 
-        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-            <div id="radius-shape-1" class="position-absolute rounded-circle"></div>
-            {% comment %} <div id="radius-shape-2" class="position-absolute rounded-circle"></div> {% endcomment %}
-        </div>
-                
+
     </div>
-        <!-- Bootstrap and Font Awesome CDNs -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Bootstrap and Font Awesome CDNs -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
