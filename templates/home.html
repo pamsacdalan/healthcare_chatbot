@@ -26,15 +26,23 @@
                     <img src="https://www.pngkey.com/png/full/986-9860488_631-x-531-26-0-1-dental-clinic.png" width="30" height="30" class="d-inline-block align-top" alt="">
                     Dental Care
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="bi-list"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                        <li class="nav-item"><a class="nav-link me-lg-3 text-white" href="#features">Home</a></li>
-                        <li class="nav-item"><a class="nav-link me-lg-3 text-white" href="#download">Contact Us</a></li>
-                    </ul>
+                <div class="form-inline">
+                    <div class="d-flex align-items-center">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                             alt="avatar 3" style="width: 20px; height: 70%; margin-right: 10px;">
+                        <a class="navbar-text text-white" href="#" style="margin-right: 10px;" aria-expanded="false">
+                           {{request.user.username}}
+                        </a>
+                        
+                        {% if request.user.is_authenticated %}
+                        |
+                        <a class="navbar-text" style="margin-left: 10px;" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                            <a class="navbar-text" style="margin-left: 10px; margin-right: 10px;" href="{% url 'login' %}">Login</a>
+                            |
+                            <a class="navbar-text" style="margin-left: 10px;" href="{% url 'signup' %}">Signup</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </nav>
@@ -98,8 +106,5 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-
     </body>
 </html>
