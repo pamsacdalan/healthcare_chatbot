@@ -1,50 +1,67 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quicare</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SYopr4UpCvGq2RnE=" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
-
-
-</head>
-<body style="background-color: #b7bdc9">
-    <nav class="navbar text-white" style="background-color: #789ac0">
-        <i class="navbar-brand" href="#">
-        <img src="https://www.pngkey.com/png/full/986-9860488_631-x-531-26-0-1-dental-clinic.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        Dental Care
-        </i>
-        <div class="form-inline">
-            <div class="d-flex align-items-center">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                     alt="avatar 3" style="width: 20px; height: 70%; margin-right: 10px;">
-                <a class="text-white" href="#" style="margin-right: 10px;" aria-expanded="false">
-                   {{request.user.username}}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>New Age - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm" id="mainNav" style="background-color: #789ac0;">
+            <div class="container px-5">
+                <a class="navbar-brand fw-bold" href="#page-top">
+                    <img src="https://www.pngkey.com/png/full/986-9860488_631-x-531-26-0-1-dental-clinic.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Dental Care
                 </a>
-                |
-                {% if request.user.is_authenticated %}
-                <a class="text-white" style="margin-left: 10px;" href="{% url 'logout' %}">Logout</a>
-                {% else %}
-                    <a href="{% url 'login' %}">Login</a>
-                    <a href="{% url 'signup' %}">Signup</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
-
-    <div>
-        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-            <div class="row gx-lg-5 align-items-center mb-5">
-                <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-                    {% comment %} <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div> {% endcomment %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                        <li class="nav-item"><a class="nav-link me-lg-3 text-white" href="#features">Home</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3 text-white" href="#download">Contact Us</a></li>
+                    </ul>
                 </div>
             </div>
-        </div>
+        </nav>
+        <!-- Mashead header-->
+        <header class="masthead">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6">
+                        <!-- Mashead text and app badges-->
+                        <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                            <h1 class="display-1 lh-1 mb-3">Quicare</h1>
+                            <p class="lead fw-normal text-muted mb-5">
+                                Our user-friendly website makes scheduling your next dental appointment a breeze. 
+                                Say goodbye to waiting on hold or navigating complicated phone menus—simply interact with our intuitive chatbot. 
+                                Book your appointment with confidence, and let us pave the way to a healthier, happier smile. 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Masthead device mockup feature-->
+                        <div class="masthead-device-mockup">
+                            <img src="{% static 'images\home2.svg' %}" alt="SVG image" width="850" height="530">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
         <div> <!-- for chatbot -->
             <input type="checkbox" id="check"> 
@@ -52,14 +69,14 @@
                 <i class="fas fa-comments"></i>
             </label> 
             <div class="wrapper"> 
-                <div class="header"> 
+                <div class="header align-items-center"> 
                     <h6>Quicare</h6> 
                 </div> 
 
                 <div class="card-body" data-perfect-scrollbar="true" style="position: relative; height: 400px">
-                    <div class="d-flex flex-row justify-content-start"> 
+                    <div class="d-flex flex-row justify-content-start" style="margin-top: 30px;"> 
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                            alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
+                            alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
                         <div class="header" style="padding: 5px; font-size: 13px"> 
                             <span>How may I help you today?</span>
                         </div>
@@ -69,19 +86,20 @@
                 <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3"> 
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
                         alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
-                    <input type="text" class="form-control form-control-sm" placeholder="Type your message" style="margin-right: 5px;">
+                    <input type="text" class="form-control form-control-sm" placeholder="Type your message">
                     <a class="ms-3 link-info" href="#!"><i class="fas fa-paper-plane"></i></a>
                 </div> 
             </div>
         </div> <!-- for chatbot END -->
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
 
-
-    </div>
-    <!-- Bootstrap and Font Awesome CDNs -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+    </body>
 </html>
