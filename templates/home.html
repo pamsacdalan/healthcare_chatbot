@@ -53,7 +53,7 @@
                     <div class="col-lg-6">
                         <!-- Mashead text and app badges-->
                         <div class="mb-5 mb-lg-0 text-center text-lg-start">
-                            <h1 class="display-1 lh-1 mb-3">Quicare</h1>
+                            <h1 class="display-1 lh-1 mb-3">Dental Care</h1>
                             <p class="lead fw-normal text-muted mb-5">
                                 Our user-friendly website makes scheduling your next dental appointment a breeze. 
                                 Say goodbye to waiting on hold or navigating complicated phone menus—simply interact with our intuitive chatbot. 
@@ -85,8 +85,12 @@
                     <div class="d-flex flex-row justify-content-start" style="margin-top: 30px;"> 
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
                             alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
-                        <div class="header" style="padding: 5px; font-size: 13px"> 
-                            <span>How may I help you today?</span>
+                        <div class="header" style="padding: 10px; font-size: 13px"> 
+                            <span>Hi {{request.user.username}}!</span>
+                            <br>
+                            <span>Wecome to Dental Care.</span>
+                            <br>
+                            <span>I'm here to help you with your appointment.</span>
                         </div>
                     </div> 
                 </div>
