@@ -7,5 +7,5 @@ def chatbot(sentence:str):
     return (response.capitalize().rsplit(' ', 1)[0] + '.')
 
 #response = chatbot("Who was Minnie?")
-response = chatbot("Who is Mark Hunter?")
+response = chatbot("Who is Arnoselle Gabales?")
 print('Bot: ' + response)
