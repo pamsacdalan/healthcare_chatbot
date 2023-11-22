@@ -2,13 +2,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as login_process, logout 
 from .forms import UserCreationForm, LoginForm, SignupForm
 from django.contrib import messages
+from chatbot.model.chatting import chatbot
+
 # Create your views here.
 
 def login(request):
     return render(request, 'login.html')
 
 def home(request):
-    return render(request, 'home.html')
+    message = request.POST['user-message']
+    context = {'message': message}
+    print(context)
+    return render(request, 'home.html', context)
+
 
 # def index(request):
 #     return render(request, 'index.html')
