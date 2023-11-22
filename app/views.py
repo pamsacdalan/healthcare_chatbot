@@ -12,8 +12,14 @@ def login(request):
 def home(request):
     if request.method == 'POST':
         message = request.POST.get('user-message', '')
-        context = {'message': message}
+        response = chatbot(message)
+        context = {
+            'message': message,
+            'response': response}
         print(context)
+        
+        response = chatbot(message)
+        print('Bot: ' + response)
         return render(request, 'home.html', context)
     
     return render(request, 'home.html')
