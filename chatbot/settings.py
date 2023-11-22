@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'chatbot.wsgi.application'
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'dentalcare',
+    'NAME': 'healthcare_dental',
     'USER': 'johnnicholasmdato',
     'PASSWORD': 'JBmMq1Dsd3fn',
     'HOST': 'ep-still-pine-74876349.ap-southeast-1.aws.neon.tech',
