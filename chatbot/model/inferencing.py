@@ -1,7 +1,7 @@
 import numpy as np
 import pickle
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import sequence, text
+from tensorflow.keras.preprocessing import sequence
 
 def chat(sentence, enc_model, dec_model, input_tokenizer, output_tokenizer, max_input_length, max_output_length):
     with open('./chatbot/model/input_tokenizer.pkl', 'rb') as input_tokenizer_file:

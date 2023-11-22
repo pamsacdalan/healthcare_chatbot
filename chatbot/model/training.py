@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 import pickle
-from tensorflow.keras import layers, activations, models, preprocessing, utils
+from tensorflow.keras import preprocessing, utils
 
 with open('./dataset/narrativeqa dataset - cleaned.csv', 'r', encoding='utf-8') as file:
     lines = file.readlines()
@@ -11,7 +11,7 @@ input_texts = []
 target_texts = []
 
 #Hi! Kung malakas po ang machine/laptop/desktop niyo, alisin niyo po ang "500" para magamit lahat ng nasa dataset
-#If di po kaya ang 500, make it smaller then increase the epochs at line 89. Warning: 500epochs ito tapos ~5s per epoch
+#If di po kaya ang 500, make it smaller then increase the epochs at line 94. Warning: 500epochs ito tapos ~5s per epoch
 for line in lines[1:500]: 
     row = line.strip().split(',')
 
