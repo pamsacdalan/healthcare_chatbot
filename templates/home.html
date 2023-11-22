@@ -92,14 +92,17 @@
                             <br>
                             <span>I'm here to help you with your appointment.</span>
                         </div>
-                    </div> 
+                    </div>
                 </div>
 
                 <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3"> 
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
                         alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
-                    <input type="text" class="form-control form-control-sm" placeholder="Type your message">
-                    <a class="ms-2" href="#"><i class="fas fa-paper-plane" style="color: #789ac0 !important;"></i></a>
+                    <form id="chat-form" method="POST">
+                        {% csrf_token %}
+                        <input type="text" class="form-control form-control-sm" name="user-message" placeholder="Type your message">
+                        <a class="ms-2" href="{% url 'home' %}"><i class="fas fa-paper-plane" type="submit" style="color: #789ac0 !important;"></i></a>
+                    </form>
                 </div> 
             </div>
         </div> <!-- for chatbot END -->

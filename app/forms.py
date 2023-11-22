@@ -48,4 +48,4 @@ class SignupForm(UserCreationForm):
 class LoginForm(Form):
     username = CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Username'}))
     password = CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': 'Password'}))
-    
+
