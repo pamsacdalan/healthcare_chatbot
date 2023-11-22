@@ -3,15 +3,18 @@ from django.contrib.auth import authenticate, login as login_process, logout
 from .forms import UserCreationForm, LoginForm, SignupForm
 from django.contrib import messages
 from chatbot.model.chatting import chatbot
+
 # Create your views here.
 
 def login(request):
     return render(request, 'login.html')
 
 def home(request):
-    
-    message = request.GET('message')
-    context = {'message': message}
+    if request.method == 'POST':
+        message = request.POST.get('user-message', '')
+        context = {'message': message}
+        print(context)
+        return render(request, 'home.html', context)
     
     return render(request, 'home.html')
 
