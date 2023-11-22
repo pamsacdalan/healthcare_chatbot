@@ -1,5 +1,5 @@
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from langchain import HuggingFaceHub
+from langchain.llms import HuggingFaceHub
 from langchain.sql_database import SQLDatabase
 from langchain_experimental.sql import SQLDatabaseChain
 from langchain.chains import LLMChain
@@ -14,11 +14,11 @@ from datetime import date
 import calendar
 import prompts
 
-
 # FEEDING FEW SHOT PROMPTS TO THE LLM
-def generate_prompt():
+def generate_prompt(loc=""):
     # load environment variables
     load_dotenv()
+    location = loc
 
     # few shot prompts
     examples_query = prompts.examples
@@ -43,7 +43,6 @@ def generate_prompt():
     # accessing current weekday and user's location
     curr_date = date.today()
     day_today = calendar.day_name[curr_date.weekday()]
-    location = "" # use User's location
 
     # passing initial prompt to llm
     custom_sql_prompt = prompts.custom_sql_query
