@@ -346,7 +346,7 @@ button {
 }
 
 button:focus:not(:focus-visible) {
-  outline: 0;
+  outline: none;
 }
 
 input,
