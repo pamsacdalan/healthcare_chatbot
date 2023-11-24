@@ -8,7 +8,9 @@ from langchain.chains import ConversationChain
 from langchain.llms import HuggingFaceHub
 from langchain.chains.conversation.memory import ConversationBufferMemory
 
-
+from django.http import JsonResponse
+from .models import Chat
+from django.utils import timezone
 
 # Create your views here.
 
@@ -18,6 +20,30 @@ def login(request):
 def home(request):
     
     # defining llm, memory and loading env variables
+    # load_dotenv()
+    # llm = HuggingFaceHub(repo_id='lmsys/fastchat-t5-3b-v1.0')
+    # memory = ConversationBufferMemory()
+    
+    # conversation = ConversationChain(
+    # llm=llm,
+    # memory=memory,
+    # )
+    
+    
+    # if request.method == 'POST':
+    #     message = request.POST.get('user-message', '')
+    #     response = conversation.predict(input=message)
+    #     reply = response[5:]
+
+    #     context = {
+    #         'message': message,
+    #         'reply': reply
+    #         }
+        
+
+    #     return render(request, 'home.html', context)
+    chats = Chat.objects.filter(user=request.user)
+
     load_dotenv()
     llm = HuggingFaceHub(repo_id='lmsys/fastchat-t5-3b-v1.0')
     memory = ConversationBufferMemory()
@@ -27,21 +53,17 @@ def home(request):
     memory=memory,
     )
     
-    
     if request.method == 'POST':
-        message = request.POST.get('user-message', '')
+        message = request.POST.get('message')
+        # response = ask_openai(message)
+        # response = chatbot_response(message)
         response = conversation.predict(input=message)
-        reply = response[5:]
+        chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
+        chat.save()
 
-        context = {
-            'message': message,
-            'reply': reply
-            }
-        
-
-        return render(request, 'home.html', context)
-
-    #return render(request, 'home.html')
+        return JsonResponse({'message': message, 'response': response})
+    return render(request, 'home.html', {'chats': chats})
+    # return render(request, 'home.html')
 
 
 # signup page
@@ -75,3 +97,26 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+
+def chatbot(request):
+    chats = Chat.objects.filter(user=request.user)
+
+    load_dotenv()
+    llm = HuggingFaceHub(repo_id='lmsys/fastchat-t5-3b-v1.0')
+    memory = ConversationBufferMemory()
+    
+    conversation = ConversationChain(
+    llm=llm,
+    memory=memory,
+    )
+    
+    if request.method == 'POST':
+        message = request.POST.get('message')
+        # response = ask_openai(message)
+        # response = chatbot_response(message)
+        response = conversation.predict(input=message)
+        chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
+        chat.save()
+        return JsonResponse({'message': message, 'response': response})
+    return render(request, 'home.html', {'chats': chats})
