@@ -33,11 +33,14 @@ def home(request):
         message = request.POST.get('message')
         response = conversation.predict(input=message)
         response = response[5:]
+        
         chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
         chat.save()
-
+  
         return JsonResponse({'message': message, 'response': response})
+        
     return render(request, 'home.html', {'chats': chats})
+    
 
 # signup page
 def user_signup(request):

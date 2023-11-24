@@ -2,14 +2,17 @@ const messagesList = document.querySelector('.messages-list');
 const messageForm = document.querySelector('.message-form');
 const messageInput = document.querySelector('.message-input');
 
+
+
 messageForm.addEventListener('submit', (event) => {
     event.preventDefault();
+    
 
     const message = messageInput.value.trim();
     if (message.length === 0) {
       return;
     }
-
+    
     const messageItem = document.createElement('li');
     messageItem.classList.add('message', 'sent');
     messageItem.innerHTML = `
@@ -27,6 +30,7 @@ messageForm.addEventListener('submit', (event) => {
           
             <div class="message-content">
                 ${message}
+              
             </div>
         </div>
         
@@ -70,12 +74,8 @@ messageForm.addEventListener('submit', (event) => {
         </div>
           `;
         messagesList.appendChild(messageItem);
-      });
+        window.scrollTo(0, document.body.scrollHeight);
 
-      function scrollToBottom(){
-        const messages = document.getElementById('messageItem');
-        const messagesid = document.getElementById('messageItem');  
-        messages.scrollTop = messagesid.offsetTop - 10;
-      }
-       
+
+      });
   });
