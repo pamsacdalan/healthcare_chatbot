@@ -79,8 +79,8 @@
                 <i class="fas fa-comments"></i>
             </label> 
             <div class="wrapper"> 
-                <div class="header align-items-center"> 
-                    <h6>Quicare</h6> 
+                <div class="header">
+                    <h6 class="align-items-center">Quicare</h6> 
                 </div> 
 
                 <!-- Start of conversation -->
@@ -89,7 +89,7 @@
                     <div class="d-flex flex-row justify-content-start" style="margin-top: 30px;"> 
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
                             alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
-                        <div class="header" style="padding: 10px; font-size: 13px"> 
+                        <div class="header text-black" style="padding: 10px; font-size: 13px; background-color: white;"> 
                             <span>Hi {{request.user.username}}!</span>
                             <br>
                             <span>Wecome to Dental Care.</span>
@@ -99,69 +99,75 @@
                     </div>
                     <ul class="list-unstyled messages-list">
                     {% for chat in chats %}
-                    {% if chat.user == request.user %}
-          
-                    <!-- User message -->
-                    <div class="d-flex flex-row justify-content-end" style="margin-top: 30px; margin-right: 30px;"> 
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                            alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
-                        <div class="header" style="padding: 10px; font-size: 13px"> 
-                            <li class="message sent" >
-                                <div class="message-text" >
-                                  <div class="message-sender">
-                                    <b>You</b>
-                                  </div>
-                                  <div class="message-content">
-                                    {{chat.message}}
-                                  </div>
-                                </div>
-                              </li>
-                        </div>
-                    </div>
-
-                    <!-- Chatbot message -->
-                    <div class="d-flex flex-row justify-content-start" style="margin-top: 30px; margin-right: 30px;"> 
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                            alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
-                        <div class="header" style="padding: 10px; font-size: 13px"> 
-                            <div class="message-content">
-                                <li class="message received">
-                                    <div class="message-text">
-                                      <div class="message-sender">
-                                        <b>Quicare</b>
-                                      </div>
-                                      <div class="message-content">
-                                        {{chat.response}}
-                                      </div>
+                        {% if chat.user == request.user %}
+            
+                        <!-- User message -->
+                        <div class="d-flex flex-row justify-content-end" style="margin-top: 30px; margin-right: 30px;"> 
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
+                            <div class="header" style="padding: 10px; font-size: 13px"> 
+                                <li class="message sent" >
+                                    <div class="message-text" >
+                                    <div class="message-sender">
+                                        <b>You</b>
                                     </div>
-                                  </li>
-                              </div>
+                                    <div class="message-content">
+                                        {{chat.message}}
+                                    </div>
+                                    <br>
+                                    <div class="message-content text-muted justify-content-end" style="font-size: 10px;">
+                                        {{chat.created_at}}
+                                    </div>
+                                    </div>
+                                </li>
+                            </div>
                         </div>
-                    </div>
-                    {% endif %}
+
+                        <!-- Chatbot message -->
+                        <div class="d-flex flex-row justify-content-start" style="margin-top: 30px; margin-right: 30px;"> 
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                                alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
+                            <div class="header text-black" style="padding: 10px; font-size: 13px; background-color: white;"> 
+                                <div class="message-content">
+                                    <li class="message received">
+                                        <div class="message-text">
+                                        <div class="message-sender">
+                                            <b>Quicare</b>
+                                        </div>
+                                        <div class="message-content">
+                                            {{chat.response}} 
+                                        </div>
+                                        <br>
+                                        <div class="message-content text-muted" style="font-size: 10px;">
+                                            {{chat.created_at}}
+                                        </div>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
                     {% endfor %}
                             
       </ul>
                 </div>
 
                 <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-                    alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                        alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
                     <form class="message-form">
-                        {%csrf_token%}
-                        <div class="input-group">
-                          <input type="text" class="form-control message-input" placeholder="Type your message...">
-                          <div class="input-group-append">
-                            {% comment %} <button type="submit" class="btn btn-primary btn-send">Send</button> {% endcomment %}
-
-                            <button type="submit"  class="btn btn-primary btn-send">
-                                <i class="fas fa-paper-plane" style="color: #789ac0 !important;"></i>
-                            </button>
-                          </div>
+                        {% csrf_token %}
+                        <div class="input-group" style="display: flex;">
+                            <input type="text" class="form-control form-control-sm message-input" placeholder="Type your message...">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn-sm d-flex align-items-center" style="border: none;">
+                                    <i class="fas fa-paper-plane" style="color: #789ac0 !important;"></i>
+                                </button>
+                            </div>
                         </div>       
-                      </form>
-            
-                </div> <script src="{% static 'js/chatbot.js' %}"></script>
+                    </form>
+                </div> 
+                <script src="{% static 'js/chatbot.js' %}"></script>
             </div>
 
         </div> <!-- for chatbot END -->
