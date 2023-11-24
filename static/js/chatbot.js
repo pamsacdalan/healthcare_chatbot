@@ -4,7 +4,14 @@ const messageInput = document.querySelector('.message-input');
 const time = document.querySelector('.message-content');
 
 var time_chat = document.getElementById('message-content').getAttribute('data-value')
-console.log(time_chat)
+
+var newDate = new Date().toLocaleDateString();
+var newtime = new Date().toLocaleTimeString();
+
+var date_time = newDate +  " " + newtime;
+console.log(date_time)
+
+
 messageForm.addEventListener('submit', (event) => {
     event.preventDefault();
     
@@ -35,7 +42,7 @@ messageForm.addEventListener('submit', (event) => {
             </div>
             <br>
             <div class="message-content text-muted" style="font-size: 10px;">
-                ${time_chat}
+                ${date_time}
             </div>
         </div>
         </div>
@@ -78,7 +85,7 @@ messageForm.addEventListener('submit', (event) => {
             </div>
             <br>
             <div class="message-content text-muted" style="font-size: 10px;">
-            ${time_chat}
+            ${date_time}
             </div>
         </div>
       
