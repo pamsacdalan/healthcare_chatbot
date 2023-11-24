@@ -147,20 +147,16 @@
                 <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
                     alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
-                    {% comment %} <form id="chat-form" method="POST" action="{% url 'home' %}" class="d-flex align-items-center">
-                        {% csrf_token %}
-                        <input type="text" class="form-control form-control-sm" name="user-message" placeholder="Type your message" style="width: 260px;">
-                        <button type="submit" style="border: 0; outline: none;">
-                            <i class="fas fa-paper-plane" style="color: #789ac0 !important;"></i>
-                        </button>
-                    </form> {% endcomment %}
-
                     <form class="message-form">
                         {%csrf_token%}
                         <div class="input-group">
                           <input type="text" class="form-control message-input" placeholder="Type your message...">
                           <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary btn-send">Send</button>
+                            {% comment %} <button type="submit" class="btn btn-primary btn-send">Send</button> {% endcomment %}
+
+                            <button type="submit"  class="btn btn-primary btn-send">
+                                <i class="fas fa-paper-plane" style="color: #789ac0 !important;"></i>
+                            </button>
                           </div>
                         </div>       
                       </form>
