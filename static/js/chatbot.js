@@ -1,9 +1,10 @@
 const messagesList = document.querySelector('.messages-list');
 const messageForm = document.querySelector('.message-form');
 const messageInput = document.querySelector('.message-input');
+const time = document.querySelector('.message-content');
 
-
-
+var time_chat = document.getElementById('message-content').getAttribute('data-value')
+console.log(time_chat)
 messageForm.addEventListener('submit', (event) => {
     event.preventDefault();
     
@@ -17,7 +18,7 @@ messageForm.addEventListener('submit', (event) => {
     messageItem.classList.add('message', 'sent');
     messageItem.innerHTML = `
     <div class="d-flex flex-row justify-content-end" style="margin-top: 30px; margin-right: 30px;"> 
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
         alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
     <div class="header" style="padding: 10px; font-size: 13px"> 
         <li class="message sent" >
@@ -32,6 +33,11 @@ messageForm.addEventListener('submit', (event) => {
                 ${message}
               
             </div>
+            <br>
+            <div class="message-content text-muted" style="font-size: 10px;">
+                ${time_chat}
+            </div>
+        </div>
         </div>
         
         </div>
@@ -58,7 +64,7 @@ messageForm.addEventListener('submit', (event) => {
         <div class="d-flex flex-row justify-content-start" style="margin-top: 30px; margin-right: 30px;"> 
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
             alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
-        <div class="header" style="padding: 10px; font-size: 13px"> 
+        <div class="header text-black" style="padding: 10px; font-size: 13px; background-color: white;"> 
             <div class="message-content">
 
             <div class="message-content">
@@ -70,12 +76,18 @@ messageForm.addEventListener('submit', (event) => {
             <div class="message-content">
                 ${response}
             </div>
+            <br>
+            <div class="message-content text-muted" style="font-size: 10px;">
+            ${time_chat}
+            </div>
+        </div>
       
         </div>
           `;
         messagesList.appendChild(messageItem);
         window.scrollTo(0, document.body.scrollHeight);
 
-
-      });
+      messageItem.lastChild.scrollIntoView(true)
+       
   });
+});

@@ -10,7 +10,7 @@ from langchain.chains.conversation.memory import ConversationBufferMemory
 
 from django.http import JsonResponse
 from .models import Chat
-from django.utils import timezone
+from datetime import datetime
 
 # Create your views here.
 
@@ -33,12 +33,13 @@ def home(request):
         message = request.POST.get('message')
         response = conversation.predict(input=message)
         response = response[5:]
-        
-        chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
+        now = datetime.now()
+        date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
+        chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
+        print(date_time_string)
         chat.save()
-  
-        return JsonResponse({'message': message, 'response': response})
-        
+
+        return JsonResponse({'message': message, 'response': response, 'created_at': date_time_string})
     return render(request, 'home.html', {'chats': chats})
     
 
