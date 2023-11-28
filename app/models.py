@@ -14,10 +14,17 @@ class Dentist(models.Model):
     clinic_schedule = models.CharField(max_length=10000,null = True) 
 
 class Chat(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    message = models.TextField()
-    response = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null = True)
+    message = models.TextField(null = True)
+    response = models.TextField(null = True)
+    created_at = models.DateTimeField(auto_now_add=True,null = True)
 
     def __str__(self):
         return f'{self.user.username}: {self.message}'
+
+class Clinic_Schedule(models.Model):
+    clinic_id = models.IntegerField(),
+    user_id  = models.IntegerField(),
+    day  = models.IntegerField(),
+    start = models.IntegerField(),
+    stop = models.IntegerField(),
