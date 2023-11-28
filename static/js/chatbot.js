@@ -3,10 +3,13 @@ const messageForm = document.querySelector('.message-form');
 const messageInput = document.querySelector('.message-input');
 const time = document.querySelector('.message-content');
 
-var time_chat = document.getElementById('message-content').getAttribute('data-value')
+
+// var time_chat = document.getElementById('message-content').getAttribute('data-value')
+
 
 var newDate = new Date().toLocaleDateString();
 var newtime = new Date().toLocaleTimeString();
+
 
 var date_time = newDate +  " " + newtime;
 console.log(date_time)
@@ -59,13 +62,16 @@ messageForm.addEventListener('submit', (event) => {
       body: new URLSearchParams({
         'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
         'message': message
+        
       })
+      
     })
       .then(response => response.json())
       .then(data => {
         const response = data.response;
         const messageItem = document.createElement('li');
         messageItem.classList.add('message', 'received');
+        
         messageItem.innerHTML = `
  
         <div class="d-flex flex-row justify-content-start" style="margin-top: 30px; margin-right: 30px;"> 
@@ -97,4 +103,5 @@ messageForm.addEventListener('submit', (event) => {
       messageItem.lastChild.scrollIntoView(true)
        
   });
+
 });
