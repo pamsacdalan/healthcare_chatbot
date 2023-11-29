@@ -1,0 +1,8 @@
+﻿input,sql
+"""How many clinics are open on Sunday?""","""SELECT COUNT(*) FROM dentists WHERE 'Sunday_start' IS NOT NULL;"""
+"""How many clinics are by appointment?"," ""SELECT COUNT(*) FROM dentists WHERE by_appointment = 1"""
+"""How many clinics are open on Monday at 8:00am?""","""SELECT COUNT(*) FROM dentists WHERE Monday_start <= 8;"""
+"""How many dentists are open at 9:00 am in Caloocan on Monday?""","""SELECT COUNT(*) FROM dentists WHERE citytown LIKE '%caloocan%' OR province LIKE '%caloocan%' OR region LIKE '%caloocan%' AND Monday_start <= 9"""
+"""Give me 10 clinics in Manila""","""SELECT clinicname FROM dentists WHERE citytown LIKE '%manila%' or province LIKE'%manila%' or region LIKE '%manila%' LIMIT 10;"""
+"""Give me the contact number of clinic""","""SELECT contactnumber FROM dentists WHERE clinicname LIKE '%clinic%';"""
+"""What are clinics in Manila that is open on Tuesday""","""SELECT clinicname FROM dentists WHERE citytown LIKE '%manila%' or province LIKE'%manila%' or region LIKE '%manila%' AND Tuesday_start IS NOT NULL;"""
