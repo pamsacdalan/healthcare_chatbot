@@ -82,18 +82,18 @@ messageForm.addEventListener('submit', (event) => {
 
             <div class="message-content">
                 <li class="message received">
-        <div class="message-text">
-            <div class="message-sender">
-              <b>Quicare</b>
+            <div class="message-text">
+                <div class="message-sender">
+                  <b>Quicare</b>
+                </div>
+                <div class="message-content">
+                    ${response}
+                </div>
+                <br>
+                <div class="message-content text-muted" style="font-size: 10px;">
+                ${date_time}
+                </div>
             </div>
-            <div class="message-content">
-                ${response}
-            </div>
-            <br>
-            <div class="message-content text-muted" style="font-size: 10px;">
-            ${date_time}
-            </div>
-        </div>
       
         </div>
           `;

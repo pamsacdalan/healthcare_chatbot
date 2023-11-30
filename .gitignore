@@ -93,3 +93,4 @@ local_settings.py
 
 
 chatbot/langsql/model
+chatbot/langsql/models

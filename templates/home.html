@@ -142,22 +142,15 @@
                                 </li>
                             </div>
                         </div>
-                        
+                       
                         <!-- Chatbot message -->
                         <div class="d-flex flex-row justify-content-start" style="margin-top: 30px; margin-right: 30px;">
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
                                 alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
-
-                            <div id="spinner-container" style="display: none;">
-                                <div class="spinner-grow"></div>
-                            </div>
                             
                             <div class="header text-black" style="padding: 10px; font-size: 13px; background-color: white;">
                                 <div class="message-content">
                                     <li class="message received">
-                                        <div id="spinner-container" style="display: none;">
-                                            <div class="spinner-grow"></div>
-                                        </div>
                                         <div class="message-text">
                                             <div class="message-sender">
                                                 <b>Quicare</b>
@@ -173,12 +166,16 @@
                                         </div>
                                     </li>
                                 </div>
-                            </div>
+                                <!-- Spinner -->
+                                <div id="spinner-container" style="display: block;">
+                                    <span class="spinner-border spinner-border-sm text-info" role="status" aria-hidden="true"></span>
+                                    &nbsp;Thinking...
+                                </div>
+                            </div> 
                         </div>
                         {% endif %}
-                    {% endfor %}
-                            
-      </ul>
+                        {% endfor %}
+                    </ul>
                 </div>
 
                 <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
@@ -201,7 +198,6 @@
                 <script src="{% static 'js/chatbot.js' %}"></script>
                 <script>
                     function openLoader() {
-                        console.log("Loader opened");
                         document.getElementById("spinner-container").style.display = "block";
                     }
                 </script>
