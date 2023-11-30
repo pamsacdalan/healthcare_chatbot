@@ -3,12 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as login_process, logout 
 from .forms import UserCreationForm, LoginForm, SignupForm
 from django.contrib import messages
-
 from dotenv import load_dotenv
-from langchain import PromptTemplate, LLMChain
-from langchain.chains import ConversationChain
-from langchain.llms import HuggingFaceHub, CTransformers
-from langchain.chains.conversation.memory import ConversationBufferWindowMemory
+
 
 from django.http import JsonResponse
 from .models import Chat, UserAddress
