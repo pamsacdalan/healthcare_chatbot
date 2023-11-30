@@ -32,7 +32,7 @@ def home(request):
         chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
         print(date_time_string)
         chat.save()
-
+        print(response)
         return JsonResponse({'message': message, 'response': response, 'created_at': date_time_string})
     return render(request, 'home.html', {'chats': chats})
     

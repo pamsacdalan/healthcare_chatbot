@@ -166,18 +166,20 @@
                                         </div>
                                     </li>
                                 </div>
-                                <!-- Spinner -->
-                                <div id="spinner-container" style="display: block;">
-                                    <span class="spinner-border spinner-border-sm text-info" role="status" aria-hidden="true"></span>
-                                    &nbsp;Thinking...
-                                </div>
+
                             </div> 
                         </div>
                         {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
-
+                                <!-- Spinner -->
+                                <div id="loadingModal" style="display: none;">
+                                    <button class="btn btn-primary" type="button" disabled>
+                                      <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                      Loading...
+                                    </button>
+                                </div>
                 <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                         alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
@@ -197,10 +199,12 @@
         </div>
                 <script src="{% static 'js/chatbot.js' %}"></script>
                 <script>
+
                     function openLoader() {
-                        document.getElementById("spinner-container").style.display = "block";
-                    }
-                </script>
+                        document.getElementById("loadingModal").style.display = "block";
+                      }
+                    
+                    </script>
             </div>
 
         </div> <!-- for chatbot END -->
