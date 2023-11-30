@@ -1,7 +1,7 @@
 const messagesList = document.querySelector('.messages-list');
 const messageForm = document.querySelector('.message-form');
 const messageInput = document.querySelector('.message-input');
-const time = document.querySelector('.message-content');
+// const time = document.querySelector('.message-content');
 
 
 // var time_chat = document.getElementById('message-content').getAttribute('data-value')
@@ -10,9 +10,12 @@ const time = document.querySelector('.message-content');
 var newDate = new Date().toLocaleDateString();
 var newtime = new Date().toLocaleTimeString();
 
-
-var date_time = newDate +  " " + newtime;
-console.log(date_time)
+//svar date_time = newDate +  " " + newtime;
+var date_time = new Date(); 
+var date_mm_dd_yyyy = new Date(date_time).toDateString().slice(4,16);
+var time = date_time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+var date_formatted = date_mm_dd_yyyy + " " + time
+console.log(date_formatted);
 
 
 messageForm.addEventListener('submit', (event) => {
@@ -45,7 +48,7 @@ messageForm.addEventListener('submit', (event) => {
             </div>
             <br>
             <div class="message-content text-muted" style="font-size: 10px;">
-                ${date_time}
+                ${date_formatted}
             </div>
         </div>
         </div>
@@ -91,7 +94,7 @@ messageForm.addEventListener('submit', (event) => {
             </div>
             <br>
             <div class="message-content text-muted" style="font-size: 10px;">
-            ${date_time}
+            ${date_formatted}
             </div>
         </div>
       
