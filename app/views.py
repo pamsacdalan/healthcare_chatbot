@@ -13,7 +13,7 @@ from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from django.http import JsonResponse
 from .models import Chat, UserAddress
 from datetime import datetime
-from chatbot.langsql.local_history import chain
+from chatbot.local_history import chain
 
 # Create your views here.
 
@@ -26,13 +26,13 @@ def home(request):
     if request.method == 'POST':
         message = request.POST.get('message')
         response = chain.predict(input=message)
-        response = response[5:]
+        response = response[1:]
         now = datetime.now()
         date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
         chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
-        print(date_time_string)
+        #print(date_time_string)
         chat.save()
-        print(response)
+        #print(response)
         return JsonResponse({'message': message, 'response': response, 'created_at': date_time_string})
     return render(request, 'home.html', {'chats': chats})
     
