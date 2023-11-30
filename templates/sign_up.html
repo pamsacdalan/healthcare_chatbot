@@ -44,6 +44,7 @@
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
                       {{ form.first_name }}
+                      <br>
                     </div>
                     <br>
                   </div>
@@ -64,7 +65,22 @@
                           <span class="input-group-text"><i class="fas fa-at"></i></span>
                       </div>
                       {{ form.email }}
+                    </div>
+                    <br>
+                    {% if form.email.errors %}
+                      <div style="color: red; text-align: left;">
+                        {{ form.email.errors }}
+                      </div>
+                    {% endif %}
                   </div>
+
+                  <div class="col-12">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-location-arrow"></i></span>
+                        </div>
+                        {{ form.address }}
+                    </div>
                     <br>
                   </div>
 
@@ -76,6 +92,11 @@
                         {{ form.username }}
                     </div>
                     <br>
+                    {% if form.username.errors %}
+                      <div style="color: red; text-align: left;">
+                        {{ form.username.errors }}
+                      </div>
+                    {% endif %}
                   </div>
 
                   <div class="col-12">
@@ -84,24 +105,35 @@
                           <span class="input-group-text"><i class="fas fa-lock"></i></span>
                       </div>
                       {{ form.password1 }}
-                  </div>
+                    </div>
                     <br>
+                    {% if form.password1.errors %}
+                      <div style="color: red; text-align: left;">
+                        {{ form.password1.errors }}
+                      </div>
+                    {% endif %}
                   </div>
 
                   <div class="col-12">
                     <div class="input-group">
                       <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-check-double"></i></span>
+                        <span class="input-group-text"><i class="fas fa-check-double"></i></span>
                       </div>
+                      <label for="{{ form.password2.id_for_label }}"></label>
                       {{ form.password2 }}
-                  </div>
+                    </div>
                     <br>
+                    {% if form.password2.errors %}
+                    <div style="color: red; text-align: left;">
+                      {{ form.password2.errors }}
+                    </div>
+                    {% endif %}
                   </div>
                 </div>
                 <!-- Login button -->
                 <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
             </form>
-            </div>
+          </div>
         </div>
         </div>
     </div>

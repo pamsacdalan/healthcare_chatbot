@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as login_process, logout 
 from .forms import UserCreationForm, LoginForm, SignupForm
 from django.contrib import messages
@@ -9,7 +10,7 @@ from langchain.llms import HuggingFaceHub
 from langchain.chains.conversation.memory import ConversationBufferMemory
 
 from django.http import JsonResponse
-from .models import Chat
+from .models import Chat, UserAddress
 from datetime import datetime
 
 # Create your views here.
@@ -48,9 +49,22 @@ def user_signup(request):
     
     if request.method == 'POST':
         form = SignupForm(request.POST)
+
         if form.is_valid():
             form.save()
+            
+            address = form.cleaned_data['address']
+            username = form.cleaned_data['username'] 
+            user= User.objects.get(username=username) #user instance
+            
+            city_address = UserAddress(username=user, city=address)
+            city_address.save()
+            #print(city_address)
             return redirect('login')
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{error}")
     else:
         form = SignupForm()
     return render(request, 'sign_up.html', {'form': form})
@@ -66,6 +80,8 @@ def user_login(request):
             if user:
                 login_process(request, user)    
                 return redirect('home')
+            else:
+                form.add_error(None, 'Invalid username or password. Please try again.')
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})

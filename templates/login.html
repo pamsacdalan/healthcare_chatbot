@@ -40,10 +40,12 @@
 
                     <form method = "POST">
                         {% csrf_token %}
-                        {% if form.errors %}
-                        <p class="errornote">
-                        {{form.non_field_errors}}
-                      {% endif %}   
+                        {% if form.non_field_errors %}
+                            <div style="color: white; background-color: #ff7b7b; margin-bottom: 5px;">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+                        
                         {{ form.username }}
                         <br>
                         {{ form.password }}

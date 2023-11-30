@@ -92,6 +92,7 @@ DATABASES = {
     'HOST': 'ep-still-pine-74876349.ap-southeast-1.aws.neon.tech',
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
+    
   }
 }
 

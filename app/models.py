@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Dentist(models.Model):
@@ -31,3 +32,7 @@ class Dentist_Schedule(models.Model):
 
     class Meta:
         db_table = 'app_dentist_schedule'
+
+class UserAddress(models.Model):
+    username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, to_field='username')
+    city = models.CharField(max_length=1000)

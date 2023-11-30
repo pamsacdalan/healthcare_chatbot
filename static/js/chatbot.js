@@ -18,7 +18,7 @@ console.log(date_time)
 messageForm.addEventListener('submit', (event) => {
     event.preventDefault();
     
-
+  
     const message = messageInput.value.trim();
     if (message.length === 0) {
       return;
@@ -97,10 +97,10 @@ messageForm.addEventListener('submit', (event) => {
       
         </div>
           `;
-        messagesList.appendChild(messageItem);
-        window.scrollTo(0, document.body.scrollHeight);
+      //   messagesList.appendChild(messageItem);
+      //   window.scrollTo(0, document.body.scrollHeight);
 
-      messageItem.lastChild.scrollIntoView(true)
+      // messageItem.lastChild.scrollIntoView(true)
        
   });
 

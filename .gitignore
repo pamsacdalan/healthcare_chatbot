@@ -90,3 +90,6 @@ local_settings.py
 
 ## VS
 .vscode
+
+
+chatbot/langsql/model
