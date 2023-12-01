@@ -29,6 +29,49 @@ examples = [
      },
 ]
 
+examples_psql = [
+    {
+        "input":"How many clinics are open on Sunday?",
+        "sql_cmd":"SELECT COUNT(*) FROM app_dentist WHERE Sunday_start IS NOT NULL;"
+    },
+    {
+        "input":"Who are  open on Monday at 8:00am?",
+        "sql_cmd":"SELECT dentist_name FROM app_dentist WHERE Monday_start <= 8;"
+    },
+    {
+        "input":"What is the contact number of this dentist?",
+        "sql_cmd":"SELECT contact_number FROM app_dentist WHERE dentist_name ILIKE '%this dentist%';"
+    },
+    {
+        "input":"What dentists are open at 9:00am in Caloocan on Monday?",
+        "sql_cmd":"SELECT dentist_name FROM app_dentist WHERE city_town ILIKE '%caloocan%' OR province ILIKE '%caloocan%' OR region ILIKE '%caloocan%' AND Monday_start <= 9"
+    },
+    {
+        "input":"Give me 10 clinics in city town",
+        "sql_cmd":"SELECT clinic_name FROM app_dentist WHERE city_town ILIKE '%city town%' or province ILIKE'%city town%' or region ILIKE '%city town%' LIMIT 10;"
+    },
+    {
+        "input":"Give me the contact number of clinic",
+        "sql_cmd":"SELECT contact_number FROM app_dentist WHERE clinic_name ILIKE '%clinic%';"
+    },
+    {
+        "input":"What are clinics in Manila city that is open on Tuesday?",
+        "sql_cmd":"SELECT clinic_name FROM app_dentist WHERE city_town ILIKE '%manila%' or province ILIKE'%manila%' or region ILIKE '%manila%' AND Tuesday_start IS NOT NULL;"
+    },
+    {
+        "input":"What clinics closes is still open at 5pm on Wednesday?",
+        "sql_cmd":"SELECT dentist_name FROM app_dentist WHERE wednesday_end >=6"
+    },
+    {
+        "input":"What clinics in Taguig are open on Weekends?",
+        "sql_cmd":"SELECT dentist_name FROM app_dentist WHERE saturday_start is not null or sunday_start is not null AND city_town ILIKE '%Taguig%' or province ILIKE '%Taguig%' OR region ILIKE '%Taguig%';"
+    },
+    {
+        "input":"Where is Dr. XYZ located?",
+        "sql_cmd":"SELECT address FROM app_dentist WHERE clinic_name ILIKE '%XYZ%' or dentist_name ILIKE '%XYZ%';"
+    },
+]
+
 custom_sql_query = """You are a SQLite expert. Given an input question, first create a syntactically correct SQLite query to run, then look at the results of the query and return the answer to the input question.
     Unless the user specifies in the question a specific number of examples to obtain, query for at most {top_k} results using the LIMIT clause as per SQLite. You can order the results to return the most informative data in the database.
     Never query for all columns from a table. You must query only the columns that are needed to answer the question. Wrap each column name in double quotes (") to denote them as delimited identifiers.
@@ -40,3 +83,6 @@ custom_sql_query = """You are a SQLite expert. Given an input question, first cr
     Question: Question here
     SQLQuery: SQL Query to run
     """
+
+custom_postgre_prompt = """
+"""
