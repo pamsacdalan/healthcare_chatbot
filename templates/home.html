@@ -173,20 +173,20 @@
                         {% endfor %}
                     </ul>
                 </div>
-                                <!-- Spinner -->
-                                <div id="loadingModal" style="display: none;">
-                                    <button class="btn btn-primary" type="button" disabled>
-                                      <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                                      Loading...
-                                    </button>
-                                </div>
+                <!-- Spinner -->
+                <div id="loadingModal" style="display: none;">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                    alt="avatar 3" style="width: 30px; height: 80%; margin-left: 10px; margin-right: 5px;">
+                    <span class="text-muted" style="font-size: 13px; font-style: italic;">Thinking...</span>&nbsp;
+                    <span class="spinner-border text-info spinner-border-sm" role="status" aria-hidden="true"></span>
+                </div>
                 <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                         alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
-                    <form onsubmit="openLoader(); return false;" class="message-form">
+                    <form onsubmit="openLoader(); return false; " class="message-form">
                         {% csrf_token %}
                         <div class="input-group" style="display: flex;">
-                            <input type="text" class="form-control form-control-sm message-input" placeholder="Type your message...">
+                            <input type="text" class="form-control form-control-sm d-flex message-input" placeholder="Type your message...">
                             <div class="input-group-append">
                                 <button type="submit" class="btn-sm d-flex align-items-center" style="border: none;">
                                     <i class="fas fa-paper-plane" style="color: #789ac0 !important;"></i>
@@ -198,13 +198,6 @@
             </div>
         </div>
                 <script src="{% static 'js/chatbot.js' %}"></script>
-                <script>
-
-                    function openLoader() {
-                        document.getElementById("loadingModal").style.display = "block";
-                      }
-                    
-                    </script>
             </div>
 
         </div> <!-- for chatbot END -->
