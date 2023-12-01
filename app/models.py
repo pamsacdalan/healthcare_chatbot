@@ -23,13 +23,15 @@ class Chat(models.Model):
     def __str__(self):
         return f'{self.user.username}: {self.message}'
 
-class Clinic_Schedule(models.Model):
-    clinic_id = models.IntegerField(),
-    user_id  = models.IntegerField(),
-    day  = models.IntegerField(),
-    start = models.IntegerField(),
-    stop = models.IntegerField(),
-    
+class Dentist_Schedule(models.Model):
+    clinic_id = models.IntegerField(null = True),
+    user_id  = models.IntegerField(null = True),
+    day  = models.IntegerField(null = True),
+    start = models.IntegerField(null = True),
+    stop = models.IntegerField(null = True),
+
+    class Meta:
+        db_table = 'app_dentist_schedule'
 
 class UserAddress(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, to_field='username')

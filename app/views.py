@@ -3,15 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as login_process, logout 
 from .forms import UserCreationForm, LoginForm, SignupForm
 from django.contrib import messages
-#from chatbot.langsql.chat import conversation
 from dotenv import load_dotenv
-from langchain.chains import ConversationChain
-from langchain.llms import HuggingFaceHub
-from langchain.chains.conversation.memory import ConversationBufferMemory
+
 
 from django.http import JsonResponse
 from .models import Chat, UserAddress
 from datetime import datetime
+from chatbot.local_history import chain
 
 # Create your views here.
 
@@ -20,26 +18,17 @@ def login(request):
 
 def home(request):
     chats = Chat.objects.filter(user=request.user)
-
-    load_dotenv()
-    llm = HuggingFaceHub(repo_id='lmsys/fastchat-t5-3b-v1.0')
-    memory = ConversationBufferMemory()
-    
-    conversation = ConversationChain(
-    llm=llm,
-    memory=memory,
-    )
     
     if request.method == 'POST':
         message = request.POST.get('message')
-        response = conversation.predict(input=message)
-        response = response[5:]
+        response = chain.predict(input=message)
+        response = response[1:]
         now = datetime.now()
         date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
         chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
-        print(date_time_string)
+        #print(date_time_string)
         chat.save()
-
+        #print(response)
         return JsonResponse({'message': message, 'response': response, 'created_at': date_time_string})
     return render(request, 'home.html', {'chats': chats})
     
