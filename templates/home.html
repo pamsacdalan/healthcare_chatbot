@@ -163,28 +163,34 @@
                                                 style="font-size: 10px;">
                                                 {{chat.created_at}}
                                             </div>
-                                        </div>
+                                        </div>                              
                                     </li>
-                                </div>
-
+                     
+                                </div>         
                             </div> 
-                        </div>
+                           </div>
+
                         {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
-                                <!-- Spinner -->
-                                <div id="loadingModal" style="display: none;">
-                                    <button class="btn btn-primary" type="button" disabled>
-                                      <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                                      Loading...
-                                    </button>
-                                </div>
+       
+             
+              
                 <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                         alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
-                    <form onsubmit="openLoader(); return false;" class="message-form">
+                    <form onsubmit="openLoader(); return false;" class="message-form" hx-target="#num_1" hx-target="#num_2" hx-target="#result">
+                        
                         {% csrf_token %}
+                      <!-- Spinner -->
+                                                                        
+                      <div id="loadingModal" style="display: none;">
+                        <button class="btn btn-primary" type="button" disabled>
+                          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                          thinking...
+                        </button>
+                    </div>
                         <div class="input-group" style="display: flex;">
                             <input type="text" class="form-control form-control-sm message-input" placeholder="Type your message...">
                             <div class="input-group-append">
