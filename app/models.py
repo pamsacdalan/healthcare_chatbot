@@ -26,7 +26,7 @@ class Chat(models.Model):
 class Dentist_Schedule(models.Model):
     clinic_id = models.IntegerField(null = True),
     user_id  = models.IntegerField(null = True),
-    day  = models.IntegerField(null = True),
+    appointment_date  = models.DateField(null = True),
     start = models.IntegerField(null = True),
     stop = models.IntegerField(null = True),
 

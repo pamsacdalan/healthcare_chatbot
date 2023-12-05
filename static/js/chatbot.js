@@ -1,6 +1,7 @@
 const messagesList = document.querySelector('.messages-list');
 const messageForm = document.querySelector('.message-form');
 const messageInput = document.querySelector('.message-input');
+const submitButton = document.querySelector('.message-form button[type="submit"]');
 // const time = document.querySelector('.message-content');
 
 
@@ -21,6 +22,7 @@ messageForm.addEventListener('submit', (event) => {
       
     const message = messageInput.value.trim();
     if (message.length === 0) {
+      closeLoader()
       return;
     }
     
@@ -99,9 +101,24 @@ messageForm.addEventListener('submit', (event) => {
           `;
         messagesList.appendChild(messageItem);
         window.scrollTo(0, document.body.scrollHeight);
-
       messageItem.lastChild.scrollIntoView(true)
-       
+      closeLoader()
   });
-
+  
 });
+
+// Spinner Functions
+
+function openLoader() {
+  document.getElementById("loadingModal").style.display = "block";
+
+  messageInput.disabled = true; 
+  submitButton.disabled = true;  
+}
+
+function closeLoader() {
+  document.getElementById("loadingModal").style.display = "none";
+
+  messageInput.disabled = false;
+  submitButton.disabled = false;
+}
