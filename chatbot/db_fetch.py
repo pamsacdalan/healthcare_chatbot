@@ -2,8 +2,10 @@ import requests
 import psycopg2
 from dotenv import dotenv_values
 
+
+
 # loading the credentials
-db_creds = dotenv_values("../.env")
+db_creds = dotenv_values("app\.env")
 host = db_creds['URL']
 user = db_creds['USER']
 password = db_creds['PASSWORD']

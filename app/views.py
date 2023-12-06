@@ -10,6 +10,8 @@ from django.http import JsonResponse
 from .models import Chat, UserAddress
 from datetime import datetime
 from chatbot.local_history import chain
+from chatbot.db_fetch import text_to_sql
+
 
 # Create your views here.
 
@@ -21,6 +23,9 @@ def home(request):
     
     if request.method == 'POST':
         message = request.POST.get('message')
+        
+        #if "set appointment" in message.lower() or "book appointment" in message.lower():
+            
         response = chain.predict(input=message)
         response = response[1:]
         now = datetime.now()
