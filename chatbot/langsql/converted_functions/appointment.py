@@ -1,7 +1,15 @@
 import psycopg2
 import pandas as pd
 from datetime import datetime
-import random
+
+from dotenv import dotenv_values
+
+# loading the credentials
+db_creds = dotenv_values("../.env")
+host = db_creds['URL']
+user = db_creds['USER']
+password = db_creds['PASSWORD']
+dbname = db_creds['DB']
 
 
 def paginator(array):
@@ -192,7 +200,7 @@ def date_selector(clinic_id):
             print(f"{day} | {int(time_start[0])}:00 - {int(time_end[0])}:00")
 
     while True:
-        user_selected = input("Please type desired date in mm/dd/yyyy format.")
+        user_selected = input("Please type desired date in mm/dd/yyyy format.\n")
         # check if date is done or not
         try:
             user_date = datetime.strptime(user_selected, date_format)
@@ -201,14 +209,14 @@ def date_selector(clinic_id):
             else:
                 # check if selected clinic can accomodate that day
                 sch_day = user_date.strftime('%A')
-                # time_start = df.loc[df['id'] == int(clinic_id)][f'{sch_day}_start'].values
-
-                # user_time = str(input('Select desired time'))
-                # if user_time >= time_start:
-                #     selected_start = user_time
-                # else:
-                #     print("Please select a valid time")
-                return user_date.date()
+                time_start = df.loc[df['id'] == int(clinic_id)][f'{sch_day}_start'].values
+                
+                can_accomodate = time_start[0]>0
+                
+                if can_accomodate:
+                    return user_date.date()
+                else:
+                    print("cant select that date")
         except:
             if user_selected.lower() == 'q':
                 break
@@ -233,9 +241,29 @@ def time_selector(date, clinic_id):
             print("Please type in integer only.")
 
 
+def generate_ctrl_num(date):
+    """Accepts date and returns a control number. Add 1 to the int part of the control number if existing in DB."""
+
+    # sample = QCYYYYMMDD001, QC20231203001
+    date_part = date.strftime("%Y%m%d")
+
+    # check db if how many control number on a certain date
+    sql_query = f"SELECT COUNT(*) FROM app_dentist_schedule WHERE reference_number ILIKE '%QC{date_part}%';"
+    conn = psycopg2.connect(dbname=dbname, user=user, host=host, password=password)
+    cur = conn.cursor()
+    cur.execute(sql_query)
+    ans = cur.fetchall()
+
+    # add 1 to count 
+    num = int(ans[0][0]) + 1
+    num_part = str(num).rjust(3, "0")
+    return f'QC{date_part}{num_part}'
+
+
 def set_appointment():
     """Sets appointment using series of questions. Returns sql INSERT statement."""
     
+    user_id = 1252 # change this
     city = "Manila"
     procedure = procedure_selector()
     print("\n")
@@ -249,9 +277,23 @@ def set_appointment():
     apt_date = date_selector(clinic_id)
     print("\n")
     time_start = time_selector(apt_date, clinic_id)
+    ctrl_number = generate_ctrl_num(apt_date)
 
-    print(f"""\nAPPOINTMENT SUMMARY:
+    sql_query = f"""insert into app_dentist_schedule (clinic_id, user_id, appointment_date, "start", stop, procedure_type, reference_number)
+values ({clinic_id}, {user_id}, '{apt_date.strftime('%Y-%m-%d')}', {time_start}, {time_start + 1}, '{procedure}', '{ctrl_number}');"""
+
+    print(f"""\nAPPOINTMENT SUMMARY for {ctrl_number}:
 {procedure} at {clinic} on {apt_date.strftime('%m/%d/%Y')}, {time_start}:00 - {time_start + 1}:00""")
+    
+    # connect to db
+    conn = psycopg2.connect(dbname=dbname, user=user, host=host, password=password)
+    cur = conn.cursor()
+    cur.execute(sql_query)
+
+    conn.commit()
+    cur.close()
+    conn.close()
     
 
 set_appointment()
+# NEED TO ADD CHECKER FOR TIME
