@@ -228,13 +228,26 @@ def time_selector(date, clinic_id):
     df = pd.read_csv("./dentist_rand_sched_utf.csv")
     day = date.strftime('%A')
     time_start = df.loc[df['id'] == int(clinic_id)][f'{day}_start'].values
-
+    # 4845 CORREA 10-11
     while True:
         user_time = input("Type desired time. Use 24 hr format and omit the :00\n")
         try:
             user_time = int(user_time)
-            if int(user_time) >= time_start:
-                return user_time
+            if user_time >= time_start:
+                # connect to db to check if time is taken
+                sql_query = f"""SELECT COUNT(*) FROM app_dentist_schedule WHERE clinic_id = {clinic_id} AND appointment_date = '{date.strftime('%Y-%m-%d')}' AND "start" = {int(user_time)};"""
+ 
+                conn = psycopg2.connect(dbname=dbname, user=user, host=host, password=password)
+                cur = conn.cursor()
+                cur.execute(sql_query)
+                ans = cur.fetchall()
+
+                # add 1 to count 
+                num = int(ans[0][0])
+                if num > 0:
+                    print("Selected time is taken")
+                else:
+                    return user_time
             elif int(user_time) < time_start:
                 print(f'Operating hours on {day}s starts at {int(time_start[0])}:00')
         except:
@@ -253,6 +266,7 @@ def generate_ctrl_num(date):
     cur = conn.cursor()
     cur.execute(sql_query)
     ans = cur.fetchall()
+    print(ans)
 
     # add 1 to count 
     num = int(ans[0][0]) + 1
