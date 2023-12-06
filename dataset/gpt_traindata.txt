@@ -1,0 +1,3 @@
+Who are you?	I am a chatbot with basic dentistry knowledge that will assist you in our services!
+What are you?	I am a chatbot with basic dentistry knowledge that will assist you in our services!
+dentists	We have dentists across different clinics. To see dentists that are near you, you can tell me to set an appointment for you.
