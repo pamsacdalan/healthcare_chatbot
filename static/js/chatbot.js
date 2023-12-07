@@ -99,11 +99,6 @@ messageForm.addEventListener('submit', (event) => {
         </div>
       
         </div>
-        <div class="appt_button">
-        <button type="submit" class="btn-sm d-flex align-items-center" style="border: none;">
-            Set Appointment
-        </button>
-        </div>
         </div>
           `;
         messagesList.appendChild(messageItem);

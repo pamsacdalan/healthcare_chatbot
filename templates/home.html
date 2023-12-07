@@ -163,7 +163,7 @@
                                                 style="font-size: 10px;">
                                                 {{chat.created_at}}
                                             </div>
-                                        </div>
+                                        </div>                              
                                     </li>
                                 </div>
                             </div> 
@@ -191,6 +191,14 @@
                         alt="avatar 3" style="width: 30px; height: 80%; margin-right: 5px;">
                     <form onsubmit="openLoader(); return false; " class="message-form">
                         {% csrf_token %}
+                      <!-- Spinner -->
+                                                                        
+                      <div id="loadingModal" style="display: none;">
+                        <button class="btn btn-primary" type="button" disabled>
+                          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                          thinking...
+                        </button>
+                    </div>
                         <div class="input-group" style="display: flex;">
                             <input type="text" class="form-control form-control-sm d-flex message-input" placeholder="Type your message...">
                             <div class="input-group-append">

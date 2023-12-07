@@ -13,7 +13,7 @@ from chatbot.local_history import chain
 from chatbot.model.gptbot import gptbot
 from chatbot.langsql.converted_functions.appointment import *
 
-
+from psycopg2 import Error
 # Create your views here.
 
 
@@ -24,13 +24,14 @@ def home(request):
     chats = Chat.objects.filter(user=request.user)
     user = User.objects.get(username=request.user.username)
     print(user.username)
+    print(user.id)
     location = UserAddress.objects.get(username_id=user.username)
     print(location.city)
     
     def set_appointment():
         """Sets appointment using series of questions. Returns sql INSERT statement."""
         
-        user_id = user.username
+        user_id = user.id
         city = location.city.upper()
         procedure = procedure_selector()
         print("\n")
@@ -46,21 +47,26 @@ def home(request):
         time_start = time_selector(apt_date, clinic_id)
         ctrl_number = generate_ctrl_num(apt_date)
 
-        sql_query = f"""insert into app_dentist_schedule (clinic_id, user_id, appointment_date, "start", stop, procedure_type, reference_number)
+        sql_query = f"""INSERT INTO app_dentist_schedule (clinic_id, "user_id", appointment_date, "start", stop, procedure_type, reference_number)
     values ({clinic_id}, {user_id}, '{apt_date.strftime('%Y-%m-%d')}', {time_start}, {time_start + 1}, '{procedure}', '{ctrl_number}');"""
 
         print(f"""\nAPPOINTMENT SUMMARY for {ctrl_number}:
     {procedure} at {clinic} on {apt_date.strftime('%m/%d/%Y')}, {time_start}:00 - {time_start + 1}:00""")
         
         # connect to db
-        conn = psycopg2.connect(dbname=dbname, user=user, host=host, password=password, sslmode=sslmode)
+        conn = psycopg2.connect(user="johnnicholasmdato",
+                                        password="JBmMq1Dsd3fn",
+                                        host="ep-still-pine-74876349.ap-southeast-1.aws.neon.tech",
+                                        port="5432",
+                                        database="healthcare_dental")
+        # conn = psycopg2.connect(dbname=dbname, user=user, host=host, password=password, sslmode=sslmode)
         cur = conn.cursor()
         cur.execute(sql_query)
 
         conn.commit()
         cur.close()
         conn.close()
-    
+
     if request.method == 'POST':
         message = request.POST.get('message')
         #response = chain.predict(input=message)
@@ -68,13 +74,14 @@ def home(request):
         
         if "appointment" in response:
             set_appointment()
+          
         #response = response[1:]
         now = datetime.now()
         date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
         chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
         #print(date_time_string)
         chat.save()
-        #print(response)
+        print(response)
         return JsonResponse({'message': message, 'response': response, 'created_at': date_time_string})
     return render(request, 'home.html', {'chats': chats})
     

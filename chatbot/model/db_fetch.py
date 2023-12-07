@@ -4,7 +4,7 @@ from dotenv import dotenv_values
 
 # loading the credentials
 db_creds = dotenv_values("app/.env")
-host = db_creds['URL']
+host = db_creds['HOST']
 user = db_creds['USER']
 password = db_creds['PASSWORD']
 dbname = db_creds['DB']
