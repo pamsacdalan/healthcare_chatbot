@@ -34,5 +34,5 @@ def text_to_sql(prompt):
         ans = "Error fetching database using the query. Please try another query."
     return ans
 
-# prompt = "List dentists who are available on both Tuesdays and Thursdays along with their contact numbers."
-# print(text_to_sql(prompt))
+#prompt = "List dentists who are available on both Tuesdays and Thursdays along with their contact numbers."
+#print(text_to_sql(prompt))
