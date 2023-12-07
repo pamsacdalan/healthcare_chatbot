@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 
 from django.http import JsonResponse
-from .models import Chat, UserAddress
+from .models import Chat, Dentist_Schedule, UserAddress
 from datetime import datetime
 from chatbot.local_history import chain
 from chatbot.model.gptbot import gptbot
@@ -27,9 +27,14 @@ def home(request):
     print(user.id)
     location = UserAddress.objects.get(username_id=user.username)
     print(location.city)
-    
-    def set_appointment():
-        """Sets appointment using series of questions. Returns sql INSERT statement."""
+
+    if request.method == 'POST':
+        message = request.POST.get('message')
+        #response = chain.predict(input=message)
+        response = gptbot(message)
+        
+        if "appointment" in response:
+                """Sets appointment using series of questions. Returns sql INSERT statement."""
         
         user_id = user.id
         city = location.city.upper()
@@ -66,19 +71,12 @@ def home(request):
         conn.commit()
         cur.close()
         conn.close()
-
-    if request.method == 'POST':
-        message = request.POST.get('message')
-        #response = chain.predict(input=message)
-        response = gptbot(message)
-        
-        if "appointment" in response:
-            set_appointment()
           
         #response = response[1:]
         now = datetime.now()
         date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
         chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
+        # appt = Dentist_Schedule(clinic_id = clinic_id,user_id = user_id,appointment_date= apt_date, start = time_start, stop = time_start, procedure_type= procedure, reference_number = ctrl_number)
         #print(date_time_string)
         chat.save()
         print(response)
