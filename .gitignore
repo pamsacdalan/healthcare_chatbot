@@ -1,5 +1,3 @@
-# Para sa api access
-chatbot/model/constants.py
 
 # Created by https://www.gitignore.io
 
@@ -97,3 +95,6 @@ local_settings.py
 
 chatbot/langsql/model
 chatbot/langsql/models
+
+# Para sa api access
+chatbot/model/constants.py

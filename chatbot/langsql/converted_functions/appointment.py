@@ -147,7 +147,7 @@ def city_selector(location):
     df = pd.read_csv("chatbot\langsql\converted_functions\dentist_rand_sched_utf.csv")
 
     while True:
-        x = input(f"Current location is {location}. Type 'Y' to proceed or type another city.\n")
+        x = input(f"Current location is {location}. Proceed? Type 'Y' to proceed or type another city.\n")
         
         if x.lower == 'q':
             break

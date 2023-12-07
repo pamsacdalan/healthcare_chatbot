@@ -29,9 +29,11 @@ class Dentist_Schedule(models.Model):
     appointment_date  = models.DateField(null = True),
     start = models.IntegerField(null = True),
     stop = models.IntegerField(null = True),
-
-    class Meta:
-        db_table = 'app_dentist_schedule'
+    procedure_type = models.CharField(null=True),
+    reference_number = models.CharField(null=True)
+    
+    # class Meta:
+    #     db_table = 'app_dentist_schedule'
 
 class UserAddress(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE, null=True, to_field='username')
