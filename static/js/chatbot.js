@@ -8,6 +8,7 @@ const submitButton = document.querySelector('.message-form button[type="submit"]
 // var time_chat = document.getElementById('message-content').getAttribute('data-value')
 var newDate = new Date().toLocaleDateString();
 var newtime = new Date().toLocaleTimeString();
+var container = document.getElementById('appt_button');
 
 //var date_time = newDate +  " " + newtime;
 var date_time = new Date(); 
@@ -97,6 +98,7 @@ messageForm.addEventListener('submit', (event) => {
             </div>
         </div>
       
+        </div>
         </div>
           `;
         messagesList.appendChild(messageItem);
