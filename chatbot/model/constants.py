@@ -4,4 +4,4 @@
 #OPENAI_API_KEY = "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"
 
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
