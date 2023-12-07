@@ -1,5 +1,5 @@
 # Para sa api access
-constants.py
+chatbot/model/constants.py
 
 # Created by https://www.gitignore.io
 
