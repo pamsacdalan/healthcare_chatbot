@@ -10,24 +10,65 @@ from django.http import JsonResponse
 from .models import Chat, UserAddress
 from datetime import datetime
 from chatbot.local_history import chain
-from chatbot.db_fetch import text_to_sql
+from chatbot.model.gptbot import gptbot
+from chatbot.langsql.converted_functions.appointment import *
 
 
 # Create your views here.
+
 
 def login(request):
     return render(request, 'login.html')
 
 def home(request):
     chats = Chat.objects.filter(user=request.user)
+    user = User.objects.get(username=request.user.username)
+    print(user.username)
+    location = UserAddress.objects.get(username_id=user.username)
+    print(location.city)
+    
+    def set_appointment():
+        """Sets appointment using series of questions. Returns sql INSERT statement."""
+        
+        user_id = user.username
+        city = location.city.upper()
+        procedure = procedure_selector()
+        print("\n")
+        clinic_list, city = city_selector(city)
+        print("\n")
+        clinic = dentist_selector(clinic_list)
+        print("\n")
+        print(clinic)
+        clinic_id = get_clinic_id(clinic, city)
+        print("\n")
+        apt_date = date_selector(clinic_id)
+        print("\n")
+        time_start = time_selector(apt_date, clinic_id)
+        ctrl_number = generate_ctrl_num(apt_date)
+
+        sql_query = f"""insert into app_dentist_schedule (clinic_id, user_id, appointment_date, "start", stop, procedure_type, reference_number)
+    values ({clinic_id}, {user_id}, '{apt_date.strftime('%Y-%m-%d')}', {time_start}, {time_start + 1}, '{procedure}', '{ctrl_number}');"""
+
+        print(f"""\nAPPOINTMENT SUMMARY for {ctrl_number}:
+    {procedure} at {clinic} on {apt_date.strftime('%m/%d/%Y')}, {time_start}:00 - {time_start + 1}:00""")
+        
+        # connect to db
+        conn = psycopg2.connect(dbname=dbname, user=user, host=host, password=password, sslmode=sslmode)
+        cur = conn.cursor()
+        cur.execute(sql_query)
+
+        conn.commit()
+        cur.close()
+        conn.close()
     
     if request.method == 'POST':
         message = request.POST.get('message')
+        #response = chain.predict(input=message)
+        response = gptbot(message)
         
-        #if "set appointment" in message.lower() or "book appointment" in message.lower():
-            
-        response = chain.predict(input=message)
-        response = response[1:]
+        if "appointment" in response:
+            set_appointment()
+        #response = response[1:]
         now = datetime.now()
         date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
         chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)

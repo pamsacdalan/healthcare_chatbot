@@ -2,10 +2,8 @@ import requests
 import psycopg2
 from dotenv import dotenv_values
 
-
-
 # loading the credentials
-db_creds = dotenv_values("app\.env")
+db_creds = dotenv_values("app/.env")
 host = db_creds['URL']
 user = db_creds['USER']
 password = db_creds['PASSWORD']
@@ -34,5 +32,5 @@ def text_to_sql(prompt):
         ans = "Error fetching database using the query. Please try another query."
     return ans
 
-#prompt = "List dentists who are available on both Tuesdays and Thursdays along with their contact numbers."
-#print(text_to_sql(prompt))
+# prompt = "List dentists who are available on both Tuesdays and Thursdays along with their contact numbers."
+# print(text_to_sql(prompt))

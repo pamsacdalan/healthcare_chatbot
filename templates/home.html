@@ -166,9 +166,15 @@
                                         </div>
                                     </li>
                                 </div>
-
                             </div> 
                         </div>
+                            {% comment %} <div id="appt_button">
+                                {% if "appointment" in chat.response %}
+                                <button type="submit" class="btn-sm d-flex align-items-center" style="border: none;">
+                                    Set Appointment
+                                </button>
+                                {% endif %}
+                            </div> {% endcomment %}
                         {% endif %}
                         {% endfor %}
                     </ul>

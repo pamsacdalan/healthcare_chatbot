@@ -1,5 +1,6 @@
 import os
-import constants
+from chatbot.model import constants
+from chatbot.model.db_fetch import text_to_sql
 from langchain.document_loaders import TextLoader
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.chat_models import ChatOpenAI

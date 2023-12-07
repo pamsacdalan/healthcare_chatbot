@@ -4,12 +4,14 @@ from datetime import datetime
 
 from dotenv import dotenv_values
 
+
 # loading the credentials
-db_creds = dotenv_values("../.env")
+db_creds = dotenv_values("app\.env")
 host = db_creds['URL']
 user = db_creds['USER']
 password = db_creds['PASSWORD']
 dbname = db_creds['DB']
+sslmode=db_creds['SSLMODE']
 
 
 def paginator(array):
@@ -142,7 +144,7 @@ def city_selector(location):
     """Takes the user's city as parameters. Returns array of dentists based on user's selected city. Also returns city."""
     
     # loading csv
-    df = pd.read_csv("./dentist_rand_sched_utf.csv")
+    df = pd.read_csv("chatbot\langsql\converted_functions\dentist_rand_sched_utf.csv")
 
     while True:
         x = input(f"Current location is {location}. Type 'Y' to proceed or type another city.\n")
@@ -171,7 +173,7 @@ def get_clinic_id(clinic_name, city):
     """Accepts clinic name and city as parameters. Returns id of the said clinic in the selected city."""
     clinic_name = clinic_name.strip()
     # loading csv
-    df = pd.read_csv("./dentist_rand_sched_utf.csv")
+    df = pd.read_csv("chatbot\langsql\converted_functions\dentist_rand_sched_utf.csv")
     
     try:
         clinic_id = df.loc[(df['clinic_name'].str.contains(clinic_name.lower(),case=False)) & df['city_town'].str.contains(city.lower(),case=False)]['id'].to_string(index=False)
@@ -183,7 +185,7 @@ def get_clinic_id(clinic_name, city):
 def date_selector(clinic_id):
     """Must input clinic id as parameter. Displays clinic's operation hours. Returns date in %Y-%m-%d, start_time and end_time."""
 
-    df = pd.read_csv("./dentist_rand_sched_utf.csv")
+    df = pd.read_csv("chatbot\langsql\converted_functions\dentist_rand_sched_utf.csv")
     
     # select date of appointment
     date_today = datetime.now()
@@ -225,7 +227,7 @@ def date_selector(clinic_id):
 
 
 def time_selector(date, clinic_id):
-    df = pd.read_csv("./dentist_rand_sched_utf.csv")
+    df = pd.read_csv("chatbot\langsql\converted_functions\dentist_rand_sched_utf.csv")
     day = date.strftime('%A')
     time_start = df.loc[df['id'] == int(clinic_id)][f'{day}_start'].values
     # 4845 CORREA 10-11
@@ -273,41 +275,7 @@ def generate_ctrl_num(date):
     num_part = str(num).rjust(3, "0")
     return f'QC{date_part}{num_part}'
 
-
-def set_appointment():
-    """Sets appointment using series of questions. Returns sql INSERT statement."""
-    
-    user_id = 1252 # change this
-    city = "Manila"
-    procedure = procedure_selector()
-    print("\n")
-    clinic_list, city = city_selector(city)
-    print("\n")
-    clinic = dentist_selector(clinic_list)
-    print("\n")
-    print(clinic)
-    clinic_id = get_clinic_id(clinic, city)
-    print("\n")
-    apt_date = date_selector(clinic_id)
-    print("\n")
-    time_start = time_selector(apt_date, clinic_id)
-    ctrl_number = generate_ctrl_num(apt_date)
-
-    sql_query = f"""insert into app_dentist_schedule (clinic_id, user_id, appointment_date, "start", stop, procedure_type, reference_number)
-values ({clinic_id}, {user_id}, '{apt_date.strftime('%Y-%m-%d')}', {time_start}, {time_start + 1}, '{procedure}', '{ctrl_number}');"""
-
-    print(f"""\nAPPOINTMENT SUMMARY for {ctrl_number}:
-{procedure} at {clinic} on {apt_date.strftime('%m/%d/%Y')}, {time_start}:00 - {time_start + 1}:00""")
-    
-    # connect to db
-    conn = psycopg2.connect(dbname=dbname, user=user, host=host, password=password)
-    cur = conn.cursor()
-    cur.execute(sql_query)
-
-    conn.commit()
-    cur.close()
-    conn.close()
     
 
-set_appointment()
+#set_appointment()
 # NEED TO ADD CHECKER FOR TIME
