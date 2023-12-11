@@ -26,7 +26,19 @@ class Chat(models.Model):
 class Dentist_Schedule(models.Model):
     clinic_id = models.IntegerField(null = True),
     user_id  = models.IntegerField(null = True),
-    appointment_date  = models.DateField(null = True),
+    appointment_date  = models.CharField(null = True),
+    start = models.IntegerField(null = True),
+    stop = models.IntegerField(null = True),
+    procedure_type = models.CharField(null=True),
+    reference_number = models.CharField(null=True)
+    
+    # class Meta:
+    #     db_table = 'app_dentist_schedule'
+
+class appointment_schedule(models.Model):
+    clinic_id = models.IntegerField(null = True),
+    user_id  = models.IntegerField(null = True),
+    appointment_date  = models.CharField(null = True),
     start = models.IntegerField(null = True),
     stop = models.IntegerField(null = True),
     procedure_type = models.CharField(null=True),

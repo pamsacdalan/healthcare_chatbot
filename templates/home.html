@@ -17,6 +17,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
 
+        {% comment %} <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" /> {% endcomment %}
+        <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}" />
         <style>
@@ -35,6 +38,7 @@
         </style>
     </head>
     <body id="page-top">
+
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm" id="mainNav" style="background-color: #789ac0;">
             <div class="container px-5">
@@ -213,7 +217,18 @@
         </div>
                 <script src="{% static 'js/chatbot.js' %}"></script>
             </div>
+            <py-script>
 
+            def greetings(name):
+                
+                print(f'Hi, {name}')
+
+            name = input()
+            greetings(name)
+
+
+            
+        </py-script>
         </div> <!-- for chatbot END -->
         <br>
         <!-- Bootstrap core JS-->
