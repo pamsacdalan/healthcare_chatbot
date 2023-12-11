@@ -147,7 +147,7 @@ def city_selector(location):
     df = pd.read_csv("chatbot\langsql\converted_functions\dentist_rand_sched_utf.csv")
 
     while True:
-        x = input(f"Current location is {location}. Type 'Y' to proceed or type another city.\n")
+        x = input(f"Current location is {location}. Proceed? Type 'Y' to proceed or type another city.\n")
         
         if x.lower == 'q':
             break
@@ -260,7 +260,7 @@ def generate_ctrl_num(date):
     """Accepts date and returns a control number. Add 1 to the int part of the control number if existing in DB."""
 
     # sample = QCYYYYMMDD001, QC20231203001
-    date_part = date.strftime("%Y%m%d")
+    date_part = date
 
     # check db if how many control number on a certain date
     sql_query = f"SELECT COUNT(*) FROM app_dentist_schedule WHERE reference_number ILIKE '%QC{date_part}%';"
