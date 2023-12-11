@@ -20,3 +20,4 @@ def gptbot(sentence:str):
 #print(gptbot("Who are you?"))
 #print(gptbot("I have a toothache, do you recommend seeing a dentist?"))
 #print(gptbot("Where can I see your dentists?"))
+print(gptbot("My gums are bleeding, what do you recommend?"))
