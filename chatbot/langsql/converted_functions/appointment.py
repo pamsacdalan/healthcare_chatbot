@@ -21,6 +21,7 @@ def paginator(array):
         choices = []
         for i in range(len(array)):
             print(f"{i} | {array[i]}")
+            ask = {i} | {array[i]}
             choices.append(array[i].lower())
 
         x = ''
@@ -129,6 +130,7 @@ def paginator(array):
                         return choices[curr_page][x].upper()
                 except:
                     pass
+    return ask
 
 
 def procedure_selector():
