@@ -1,3 +1,61 @@
 Who are you?	I am a chatbot with basic dentistry knowledge that will assist you in our services!
 What are you?	I am a chatbot with basic dentistry knowledge that will assist you in our services!
 dentists	We have dentists across different clinics. To see dentists that are near you, you can tell me to set an appointment for you.
+What dental services are available?	We have Dental Cleanings, Fillings, Root Canal Therapy, Tooth Extraction, Crowns, Bridges, Dental Implants, Dentures, Teeth Whitening, Dental Checkup
+Dental services	We have Dental Cleanings, Fillings, Root Canal Therapy, Tooth Extraction, Crowns, Bridges, Dental Implants, Dentures, Teeth Whitening, Dental Checkup
+do you have dental cleaning?	Yes, we have dental cleaning available with our partnered dentists.
+dental cleaning	Yes, we have dental cleaning available with our partnered dentists.
+do you have dental consultation?	Yes, some of our dentists are available on call for dental consultation.
+dental consultation	Yes, some of our dentists are available on call for dental consultation.
+hi	Hello, what's up?
+hello	Hi!
+Do you accept HMO card as payment?	Yes, we accept HMO as payment to be credited on your HMO account
+is there an available Xray on your clinic?	yes, we have panoramic Xrays available
+How can I schedule a visit with the dental clinic?	To schedule a visit with our dental clinics, please say that you want to book an appointment
+What services are available for visit scheduling through the chatbot?	We have Dental Cleanings, Fillings, Root Canal Therapy, Tooth Extraction, Crowns, Bridges, Dental Implants, Dentures, Teeth Whitening, Dental Checkup
+Are emergency dental visits available through the chatbot?	For emergency dental visits booking, please contact instead the clinic directly for faster confirmation.
+What information do I need to provide to book a visit?	After confirming that you want to set an appointment, we need to verify your location to provide you options of the nearest clinics available.
+Can I choose a specific dentist when scheduling a visit?	Yes, after confirming your location, you can pick a specific dentist available from the list.
+What is the cancellation policy for visits booked through the chatbot?	For cancellations, please contact the clinic directly.
+Are weekend or evening visits available through the chatbot?	Yes, we can confirm if the scheduled time you've given has any available slots.
+Is there an option to reschedule visits through the chatbot?	For rescheduling, please contact the clinic you've scheduled with.
+Can I book visits for multiple family members through the chatbot?	For multiple appointments for other members, please schedule using their respective accounts.
+What types of insurance are accepted, and can I verify coverage through the chatbot?	For coverage, please consult with your HMO provider.
+How do I check the status of my upcoming visit through the chatbot?	To check, please provide your reference code.
+Can I request specific preferences for my visit, such as a particular dental procedure or treatment?	For special requests, we recommend to consult with your dentist first before coming to the appointment.
+What information do I receive after successfully booking a visit through the chatbot?	You will receive a code to use as a reference when visiting your dentist.
+Can I get directions to the dental clinic through the chatbot?	For clinic directions, we recommend contacting the clinic instead.
+Is there a virtual consultation option available through the chatbot?	Virtual consultations are not available, please schedule an appointment instead.
+Is my personal and health information secure when using the chatbot for visits?	Your personal and health information is secured and will only be shared to the dentist you have booked an appointment with.
+Are there any specific requirements or preparations needed for certain dental procedures, and can I get information on those through the chatbot?	As a chatbot, I do not have sufficient knowledge for very specific dental procedures. I recommend to consult with your dentist personally.
+Can the chatbot assist with finding the nearest dental clinic based on my location?	Yes. To check for available clinics, please schedule an appointment.
+How do I inquire about the availability of specific dental treatments or procedures through the chatbot?	Not all dental services are available to all clinics. To check, please set an appointment.
+Is there a waiting time estimate provided through the chatbot when scheduling a visit?	The waiting time for each clinic may vary, hence we recommend contacting the local clinic instead for an estimate.
+Can I provide additional notes or special requests when booking a visit through the chatbot?	For special requests, we recommend to consult with your dentist first before coming to the appointment.
+How do I receive confirmation of my visit time and date through the chatbot?	After confirming, you will be given a reference code. Remember this code for future references.
+Toothache	I recommend scheduling a dental appointment as soon as possible to address the toothache. In the meantime, rinse your mouth with warm water, floss gently to remove any potential debris.
+Sensitivity	I recommend scheduling a dental appointment as soon as possible to address the sensitivity. If you're experiencing tooth sensitivity, try using a toothpaste designed for sensitive teeth and avoid consuming extremely hot or cold foods.
+Swollen Gums	I recommend scheduling a dental appointment as soon as possible to address the swollen gums. For swollen gums, maintain good oral hygiene by brushing and flossing gently, and rinse your mouth with a mild saltwater solution. Consider using an antiseptic mouthwash.
+Bleeding Gums	I recommend scheduling a dental appointment as soon as possible to address the bleeding gums. Make sure to brush gently using a soft-bristled toothbrush and floss regularly to remove plaque. Consider using an antiseptic mouthwash.
+Bad Breath	To address bad breath, maintain a consistent oral hygiene routine, including brushing your teeth, tongue, and gums, and flossing daily. Stay hydrated, chew sugar-free gum, and consider using an alcohol-free mouthwash. If bad breath persists, please book an appointment.
+Loose Teeth	I recommend scheduling a dental appointment as soon as possible to address the loose teeth. It's crucial to see a dentist promptly for a thorough examination. Avoid putting pressure on the affected teeth and refrain from biting into hard foods.
+Jaw Pain	I recommend scheduling a dental appointment as soon as possible to address the jaw pain. Try applying a cold or warm compress to the affected area and avoid chewing gum. Practice relaxation techniques and maintain proper posture.
+temporomandibular joint (TMJ)	I recommend scheduling a dental appointment as soon as possible to address TMJ. Try applying a cold or warm compress to the jaw, avoid chewing gum, and practice relaxation exercises.
+Mouth Sores	I recommend scheduling a dental appointment as soon as possible to address the mouth sores. For mouth sores, rinse your mouth with a mild saltwater solution, avoid spicy or acidic foods, and consider using over-the-counter topical gels for relief.
+Dry Mouth	If you're experiencing dry mouth, stay well-hydrated by drinking water throughout the day and consider using sugar-free gum or lozenges to stimulate saliva production. Book an appointment to rule out any underlying causes.
+Changes in Bite	If you're noticing changes in your bite, such as discomfort or misalignment, it's important to schedule a dental appointment for a comprehensive examination. Changes in bite may be indicative of dental issues like misaligned teeth, grinding, or jaw problems.
+Cracked or Chipped Teeth	I recommend scheduling a dental appointment as soon as possible to address the broken teeth. For cracked or chipped teeth, avoid chewing on hard foods and ice.
+White Spots on Teeth	White spots on teeth may indicate enamel demineralization. Consult with a dentist to determine the cause and explore potential treatments.
+Red or Inflamed Gums	I recommend scheduling a dental appointment as soon as possible to address the inflamed gums. Practice thorough oral hygiene by brushing gently, flossing, and using an antiseptic mouthwash.
+Difficulty Chewing or Swallowing	Schedule an appointment with a dentist or healthcare professional to assess the underlying cause, which may be related to dental issues, temporomandibular joint (TMJ) problems, or other health concerns.
+Grinding or Clenching	If you're grinding or clenching your teeth, especially during sleep, it's advisable to consult with a dentist. They can assess the extent of the issue and may recommend a custom-fitted nightguard to protect your teeth.
+Metallic Taste	A metallic taste in the mouth could have various causes, including dental issues or systemic conditions. Schedule a dental appointment to rule out oral health concerns such as infections or dental work-related complications.
+Puffy Cheeks or Face	Puffy cheeks or face may be a sign of a dental abscess or infection. It's crucial to seek immediate dental attention to assess and address the issue. I recommend booking an appointment if it persists.
+Difficulty Opening Mouth	Difficulty opening your mouth may be indicative of a temporomandibular joint (TMJ) issue or another dental concern. It's important to consult with a dentist or healthcare professional for a thorough evaluation.
+Pus or Drainage	The presence of pus or drainage may indicate an infection in the oral cavity, such as a dental abscess. It's crucial to seek immediate dental attention for a thorough examination and appropriate treatment. Book an appointment as soon as possible to addess the pus issue.
+Changes in Tongue Color	Changes in tongue color can be associated with various factors, including oral health and overall well-being. If you notice significant and unexplained changes in your tongue color, it's advisable to consult with a dentist and book an appointment.
+Numbness	Numbness could be related to dental issues, such as nerve compression or infection, or it may have other medical causes. Schedule an immediate appointment with a dentist to address this issue.
+Halitosis or Persistent Bad Breath	I recommend scheduling a dental appointment as soon as possible to address the possible Halitosis problem. Maintain a thorough oral hygiene routine, including regular brushing of teeth, tongue, and gums, as well as flossing.
+Gum Recession	I recommend scheduling a dental appointment as soon as possible to address gum recession. Gum recession can be a sign of various dental issues, including gum disease or aggressive tooth brushing.
+Visible Tartar or Plaque	If you notice visible tartar or plaque on your teeth, it's essential to schedule a dental cleaning with a dentist or dental hygienist. Professional cleaning can remove the hardened plaque (tartar) that regular brushing and flossing may not effectively address.
+Lesions or Lumps	If you have lesions or lumps in your oral cavity, it's crucial to schedule a dental appointment immediately. Lesions or lumps may be indicative of various conditions, including infections or potentially more serious issues.

@@ -9,8 +9,8 @@ from dotenv import dotenv_values
 # loading the credentials
 db_creds = dotenv_values("app/.env")
 api_key = db_creds['OPENAI_API_KEY']
-
 os.environ["OPENAI_API_KEY"] = api_key
+
 loader = TextLoader("./dataset/gpt_traindata.txt")
 index = VectorstoreIndexCreator().from_loaders([loader])
 
@@ -20,3 +20,4 @@ def gptbot(sentence:str):
 #print(gptbot("Who are you?"))
 #print(gptbot("I have a toothache, do you recommend seeing a dentist?"))
 #print(gptbot("Where can I see your dentists?"))
+print(gptbot("My gums are bleeding, what do you recommend?"))

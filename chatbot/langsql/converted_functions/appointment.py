@@ -262,7 +262,7 @@ def generate_ctrl_num(date):
     """Accepts date and returns a control number. Add 1 to the int part of the control number if existing in DB."""
 
     # sample = QCYYYYMMDD001, QC20231203001
-    date_part = date.strftime("%Y%m%d")
+    date_part = date
 
     # check db if how many control number on a certain date
     sql_query = f"SELECT COUNT(*) FROM app_dentist_schedule WHERE reference_number ILIKE '%QC{date_part}%';"
