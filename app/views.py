@@ -73,10 +73,13 @@ def home(request):
             # conn = psycopg2.connect(dbname=dbname, user=user, host=host, password=password, sslmode=sslmode)
             cur = conn.cursor()
             cur.execute(dentist_query)
-            dentist_select = str(cur.fetchall())
+            dentist_select = cur.fetchall()
             print(dentist_select)
-            dentist_list = "<br>".join([f"- Clinic Code: {clinic_code}, Dentist Name: {dentist_name}" for clinic_code, dentist_name in dentist_select])
-            response = f"""Please specify your appointment details in this format (dentist code, ppointment date(mm/dd/yyyy), time(24hr format), procedure type)<br><br>Here's the list of nearby dentist based on your location:<br>{dentist_list}"""
+            
+            dentist_info = ""
+            for dentist_code, dentist_name in dentist_select:
+                dentist_info += f""" Dentist Code: {dentist_code},<br> Dentist name: {dentist_name}<br><br>"""
+            response = f"""Please specify your appointment details in this format (dentist code, appointment date(mm/dd/yyyy), time(24hr format), procedure type)<br><br>Here's the list of nearby dentists based on your location:<br><br>{dentist_info}<br>"""
             # insert_appointment = message.split(",")
             # print(insert_appointment)
             now = datetime.now()
