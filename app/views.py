@@ -158,10 +158,10 @@ def user_signup(request):
             form.save()
             
             address = form.cleaned_data['address']
-            username = form.cleaned_data['username'] 
+            username = form.cleaned_data['username']
             user= User.objects.get(username=username) #user instance
             
-            city_address = UserAddress(username=user, city=address)
+            city_address = UserAddress(id=user.id, username=user, city=address)
             city_address.save()
             #print(city_address)
             return redirect('login')
