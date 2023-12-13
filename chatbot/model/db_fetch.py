@@ -3,7 +3,7 @@ import psycopg2
 from dotenv import dotenv_values
 
 # loading the credentials
-db_creds = dotenv_values("../../app/.env")
+db_creds = dotenv_values("app/.env")
 host = db_creds['HOST']
 user = db_creds['USER']
 password = db_creds['PASSWORD']
@@ -40,6 +40,6 @@ def text_to_sql(prompt):
     return ans
 
 # prompt = "List dentists who are available on both Tuesdays and Thursdays along with their contact numbers."
-# prompt = "How many dentists in MARIKINA"
-# print(prompt)
-# print(text_to_sql(prompt))
+prompt = "How many dentists in MARIKINA"
+print(prompt)
+print(text_to_sql(prompt))

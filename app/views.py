@@ -62,7 +62,19 @@ def home(request):
 
         appointment_keywords_list = any(keyword_appt in message for keyword_appt in appointment_keywords)
         if appointment_keywords_list:
-            response = "Please specify your appointment details in this format(appointment date, time, procedure type)"
+            dentist_query = f"""SELECT clinic_code, dentist_name from app_dentist where city_town LIKE '%{location.city}%';"""
+            
+            conn = psycopg2.connect(user="johnnicholasmdato",
+                                            password="JBmMq1Dsd3fn",
+                                            host="ep-still-pine-74876349.ap-southeast-1.aws.neon.tech",
+                                            port="5432",
+                                            database="healthcare_dental")
+            # conn = psycopg2.connect(dbname=dbname, user=user, host=host, password=password, sslmode=sslmode)
+            cur = conn.cursor()
+            cur.execute(dentist_query)
+            dentist_select = str(cur.fetchall())
+
+            response = f"""Please specify your appointment details in this format (dentist code, ppointment date(mm/dd/yyyy), time(24hr format), procedure type)\nHere's the list of nearby dentist based on your location:\n{dentist_select}"""
             # insert_appointment = message.split(",")
             # print(insert_appointment)
             now = datetime.now()
@@ -75,7 +87,7 @@ def home(request):
         if procedures_keywords_list:
             insert_appointment = message.split(",")
             print(insert_appointment)
-            sql_query = f"""SELECT clinic_id from app_dentist where city_town LIKE '%{location.city}%';"""
+            sql_query = f"""SELECT clinic_id from app_dentist where clinic_code ILIKE '%{insert_appointment[0]}%';"""
             
 
         #     sql_query = f"""INSERT INTO app_dentist_schedule (clinic_id, "user_id", appointment_date, "start", stop, procedure_type, reference_number)
@@ -101,16 +113,16 @@ def home(request):
             clinic_name = str(cur.fetchone())
             clinic_name = clinic_name[2:-3]
             print(clinic_name)
-            ctrl_number = "QC" + str(insert_appointment[0].replace("/", "")) + str(clinic_id) + str(user.id)
+            ctrl_number = "QC" + str(insert_appointment[1].replace("/", "")) + str(clinic_id) + str(user.id)
             print(ctrl_number)
             insert_query = f"""INSERT INTO app_dentist_schedule (clinic_id, "user_id", appointment_date, "start", stop, procedure_type, reference_number)
-        values ({clinic_id}, {user.id}, '{insert_appointment[0]}', {insert_appointment[1]}, {int(insert_appointment[1]) + 1}, '{insert_appointment[2]}', '{ctrl_number}');"""
+        values ({clinic_id}, {user.id}, '{insert_appointment[1].strip()}', {int(insert_appointment[2].strip())}, {int(insert_appointment[2].strip()) + 1}, '{insert_appointment[3].strip()}', '{ctrl_number}');"""
             cur.execute(insert_query)
             conn.commit()
             cur.close()
             conn.close()
   
-            response = f"""\nAPPOINTMENT SUMMARY for {ctrl_number}: {insert_appointment[2]} at {clinic_name} on {insert_appointment[0]} {insert_appointment[1]}:00 - {int(insert_appointment[1]) + 1}:00"""
+            response = f"""\nAPPOINTMENT SUMMARY\nReference Number: {ctrl_number.upper()} \nAppointment Details:{insert_appointment[3].strip()} at {clinic_name.strip()} on {insert_appointment[1].strip()} {int(insert_appointment[2].strip())}:00 - {int(insert_appointment[2].strip()) + 1}:00"""
             now = datetime.now()
             date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
             chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
