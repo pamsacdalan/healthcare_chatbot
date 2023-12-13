@@ -74,8 +74,9 @@ def home(request):
             cur = conn.cursor()
             cur.execute(dentist_query)
             dentist_select = str(cur.fetchall())
-            dentist_list = "\n".join([f"- Clinic Code: {clinic_code}, Dentist Name: {dentist_name}" for clinic_code, dentist_name in dentist_select])
-            response = f"""Please specify your appointment details in this format (dentist code, ppointment date(mm/dd/yyyy), time(24hr format), procedure type) <br><br> Here's the list of nearby dentist based on your location:<br>{dentist_list}"""
+            print(dentist_select)
+            dentist_list = "<br>".join([f"- Clinic Code: {clinic_code}, Dentist Name: {dentist_name}" for clinic_code, dentist_name in dentist_select])
+            response = f"""Please specify your appointment details in this format (dentist code, ppointment date(mm/dd/yyyy), time(24hr format), procedure type)<br><br>Here's the list of nearby dentist based on your location:<br>{dentist_list}"""
             # insert_appointment = message.split(",")
             # print(insert_appointment)
             now = datetime.now()
@@ -123,7 +124,7 @@ def home(request):
             cur.close()
             conn.close()
   
-            response = f"""\nAPPOINTMENT SUMMARY\nReference Number: {ctrl_number.upper()} \nAppointment Details:{insert_appointment[3].strip()} at {clinic_name.strip()} on {insert_appointment[1].strip()} {int(insert_appointment[2].strip())}:00 - {int(insert_appointment[2].strip()) + 1}:00"""
+            response = f"""\nAPPOINTMENT SUMMARY<br><br>Reference Number: {ctrl_number.upper()}<br>Appointment Details:{insert_appointment[3].strip()} at {clinic_name.strip()} on {insert_appointment[1].strip()} {int(insert_appointment[2].strip())}:00 - {int(insert_appointment[2].strip()) + 1}:00"""
             now = datetime.now()
             date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
             chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
