@@ -73,8 +73,8 @@ def home(request):
             cur = conn.cursor()
             cur.execute(dentist_query)
             dentist_select = str(cur.fetchall())
-
-            response = f"""Please specify your appointment details in this format (dentist code, ppointment date(mm/dd/yyyy), time(24hr format), procedure type)\nHere's the list of nearby dentist based on your location:\n{dentist_select}"""
+            print(dentist_select)
+            response = f"""Please specify your appointment details in this format (dentist code, ppointment date(mm/dd/yyyy), time(24hr format), procedure type)<br><br>Here's the list of nearby dentist based on your location:<br>{dentist_select}"""
             # insert_appointment = message.split(",")
             # print(insert_appointment)
             now = datetime.now()
@@ -122,7 +122,7 @@ def home(request):
             cur.close()
             conn.close()
   
-            response = f"""\nAPPOINTMENT SUMMARY\nReference Number: {ctrl_number.upper()} \nAppointment Details:{insert_appointment[3].strip()} at {clinic_name.strip()} on {insert_appointment[1].strip()} {int(insert_appointment[2].strip())}:00 - {int(insert_appointment[2].strip()) + 1}:00"""
+            response = f"""\nAPPOINTMENT SUMMARY<br><br>Reference Number: {ctrl_number.upper()}<br>Appointment Details:{insert_appointment[3].strip()} at {clinic_name.strip()} on {insert_appointment[1].strip()} {int(insert_appointment[2].strip())}:00 - {int(insert_appointment[2].strip()) + 1}:00"""
             now = datetime.now()
             date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
             chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
