@@ -117,14 +117,17 @@ def home(request):
             print(clinic_name)
             ctrl_number = "QC" + str(insert_appointment[1].replace("/", "")) + str(clinic_id) + str(user.id)
             print(ctrl_number)
-            insert_query = f"""INSERT INTO app_dentist_schedule (clinic_id, "user_id", appointment_date, "start", stop, procedure_type, reference_number)
-        values ({clinic_id}, {user.id}, '{insert_appointment[1].strip()}', {int(insert_appointment[2].strip())}, {int(insert_appointment[2].strip()) + 1}, '{insert_appointment[3].strip()}', '{ctrl_number}');"""
-            cur.execute(insert_query)
-            conn.commit()
-            cur.close()
-            conn.close()
-  
-            response = f"""\nAPPOINTMENT SUMMARY<br><br>Reference Number: {ctrl_number.upper()}<br>Appointment Details:{insert_appointment[3].strip()} at {clinic_name.strip()} on {insert_appointment[1].strip()} {int(insert_appointment[2].strip())}:00 - {int(insert_appointment[2].strip()) + 1}:00"""
+            try:
+                insert_query = f"""INSERT INTO app_dentist_schedule (clinic_id, "user_id", appointment_date, "start", stop, procedure_type, reference_number)
+            values ({clinic_id}, {user.id}, '{insert_appointment[1].strip()}', {int(insert_appointment[2].strip())}, {int(insert_appointment[2].strip()) + 1}, '{insert_appointment[3].strip()}', '{ctrl_number}');"""
+                cur.execute(insert_query)
+                conn.commit()
+                cur.close()
+                conn.close()
+                response = f"""\nAPPOINTMENT SUMMARY<br><br>Reference Number: {ctrl_number.upper()}<br>Appointment Details:{insert_appointment[3].strip()} at {clinic_name.strip()} on {insert_appointment[1].strip()} {int(insert_appointment[2].strip())}:00 - {int(insert_appointment[2].strip()) + 1}:00"""
+            except psycopg2.errors.InvalidDatetimeFormat:
+                response = "invalid Date format please make sure to enter in mm/dd/yyyy format"
+
             now = datetime.now()
             date_time_string = now.strftime("%m/%d/%Y %H:%M:%S")
             chat = Chat(user=request.user, message=message, response=response, created_at=date_time_string)
