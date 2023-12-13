@@ -22,7 +22,7 @@ def text_to_sql(prompt):
         "
     payload= {'prompt':prompt, 'schema':context}
     response = requests.post('https://www.eversql.com/api/generateSQLFromText/',data=payload)
-    
+    print(response)
     # get the converted sql query
     sql_query = response.text.replace("\\n"," ").replace('"',"")
 
@@ -38,6 +38,5 @@ def text_to_sql(prompt):
     return ans
 
 # prompt = "List dentists who are available on both Tuesdays and Thursdays along with their contact numbers."
-# prompt = "List of dentists in MARIKINA"
-# print(prompt)
-# print(text_to_sql(prompt))
+prompt = "procedure types"
+print(text_to_sql(prompt))
