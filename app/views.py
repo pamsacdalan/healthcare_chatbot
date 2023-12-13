@@ -74,8 +74,8 @@ def home(request):
             cur = conn.cursor()
             cur.execute(dentist_query)
             dentist_select = str(cur.fetchall())
-
-            response = f"""Please specify your appointment details in this format (dentist code, ppointment date(mm/dd/yyyy), time(24hr format), procedure type)\nHere's the list of nearby dentist based on your location:\n{dentist_select}"""
+            dentist_list = "\n".join([f"- Clinic Code: {clinic_code}, Dentist Name: {dentist_name}" for clinic_code, dentist_name in dentist_select])
+            response = f"""Please specify your appointment details in this format (dentist code, ppointment date(mm/dd/yyyy), time(24hr format), procedure type) <br><br> Here's the list of nearby dentist based on your location:<br>{dentist_list}"""
             # insert_appointment = message.split(",")
             # print(insert_appointment)
             now = datetime.now()
