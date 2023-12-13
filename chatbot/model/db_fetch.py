@@ -41,6 +41,6 @@ def text_to_sql(prompt):
     return ans
 
 # prompt = "List dentists who are available on both Tuesdays and Thursdays along with their contact numbers."
-# prompt = "How many dentists in MARIKINA"
-# print(prompt)
-# print(text_to_sql(prompt))
+prompt = "How many dentists in MARIKINA"
+print(prompt)
+print(text_to_sql(prompt))
